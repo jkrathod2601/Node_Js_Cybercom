@@ -1,7 +1,8 @@
 // const math=require("./math")
-const {add,sub,name,multiply}=require("./math")
+const {add,sub,name}=require("./math")
 const {seat,run}=require("./math2")
 const {done,doneis}=require("./math3")
+const multiply=require('./math')
 
 
 // console.log(math)

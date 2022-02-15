@@ -12,8 +12,8 @@ const multiply=(a,b)=>{
 
 const name="jayraj rathod"
 
-
+// export {multiply as default}
 // exports.default = multiply
 
 module.exports={add,sub,name}
-module.exports.multiply=multiply
+// module.exports.multiply=multiply
