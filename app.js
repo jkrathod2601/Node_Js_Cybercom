@@ -1,21 +1,14 @@
 const express=require('express');
 const app=express()
+const path=require('path');
 const userrout=require('./routes/user')
 
 app.use(userrout)
 
-// app.use((req,res,next) => {
-//     console.log("hello from 1st")
-//     next()
-// })
 
-// app.use((req,res,next) => {
-//     console.log("hello from 2")
-//     res.send("<h1>hello from server 2</h1>")
-// })
 
 app.get("*",(req,res)=>{
-    res.send("error found plz check some other page")
+    res.status(404).sendFile(path.join(__dirname, './','views','404.html'))
 })
 
 app.listen(3000,()=>{
