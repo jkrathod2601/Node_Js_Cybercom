@@ -2,6 +2,9 @@ const express=require('express')
 const app=express()
 const router=express.Router()
 const path=require('path')
+const fs=require('fs')
+const ejs = require("ejs");
+// let pdf = require("html-pdf");
 
 const product_data=[]
 
@@ -61,5 +64,27 @@ router.post('/sendmail',async(req,res)=>{
         }
     });
 })
+
+// router.get('/htmltopdf',(req,res)=>{
+//     let data_html=fs.readFileSync(path.join(__dirname,'../','views','add_product.ejs'),'utf-8')
+//     console.log(data_html)
+//     let options = {
+//         "height": "11.25in",
+//         "width": "8.5in",
+//         "header": {
+//             "height": "20mm"
+//         },
+//         "footer": {
+//             "height": "20mm",
+//         },
+//     };
+//     pdf.create(data_html, options).toFile("report.pdf", function (err, data) {
+//         if (err) {
+//             res.send(err);
+//         } else {
+//             res.send("File created successfully");
+//         }
+//     });
+// })
 
 module.exports=router
