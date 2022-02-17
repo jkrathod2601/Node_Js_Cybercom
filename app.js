@@ -3,6 +3,7 @@ const app=express()
 const path=require('path');
 const userrout=require('./routes/user')
 
+app.use(express.static(path.join(__dirname, 'public')))
 app.use(userrout)
 
 
