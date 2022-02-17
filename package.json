@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/jkrathod2601/Node_Js_Cybercom#readme",
   "dependencies": {
+    "ejs": "^3.1.6",
     "express": "^4.17.2",
     "nodemon": "^2.0.15"
   }
