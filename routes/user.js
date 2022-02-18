@@ -1,9 +1,11 @@
 const express=require('express')
 const app=express()
 const router=express.Router()
-
+const path=require('path')
 const ejs = require("ejs");
 const shopcontroller=require("../controllers/shopcontroller")
+const User=require("../model/usermodel")
+const pdf=require("html-pdf")
 // let pdf = require("html-pdf");
 
 
@@ -49,5 +51,25 @@ router.post('/sendmail',shopcontroller.sendmailpost)
 //         }
 //     });
 // })
+
+
+router.get("/pdf", (req, res) => {
+
+    // your missing data, wheres it coming from?
+    // it should also look like:
+    // let data = { data: [{ imei: { name: '', ...}}, ...], ...}
+  
+    // render the ejs file
+    ejs.renderFile(path.join(__dirname,"../views/shop.ejs"),{about:"this is page about to learn EJS",data:User.fatchdata() }, function(err, str) {
+      if (err) return res.send(err);
+  
+      // str now contains your rendered html
+      pdf.create(str).toFile("report.pdf", function(err, data) {
+        if (err) return res.send(err);
+  
+        res.send("File created successfully");
+      });
+    });
+  });
 
 module.exports=router

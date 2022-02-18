@@ -23,6 +23,7 @@
     "express": "^4.17.2",
     "html-pdf": "^3.0.1",
     "nodemailer": "^6.7.2",
-    "nodemon": "^2.0.15"
+    "nodemon": "^2.0.15",
+    "pdf": "^0.1.0"
   }
 }
