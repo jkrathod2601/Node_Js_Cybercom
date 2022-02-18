@@ -8,12 +8,8 @@ app.use(express.urlencoded({extended:true}))
 
 app.use(express.static(path.join(__dirname, 'public')))
 app.use(userrout)
-
 // setting ejs
 app.set('view engine', 'ejs')
-
-const x=[1,2,3]
-
 
 app.get("*",(req,res)=>{
     // res.status(404).sendFile(path.join(__dirname, './','views','404.html'))

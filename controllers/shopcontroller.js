@@ -4,6 +4,7 @@ const fs=require('fs')
 const ejs=require('ejs')
 const User=require('../model/usermodel')
 var nodemailer = require('nodemailer');
+const pdf=require("html-pdf")
 
 
 
@@ -59,9 +60,7 @@ exports.sendmailpost=async(req,res)=>{
                   msg: 'fail'
                 })
               } else {
-                res.json({
-                  msg: 'success'
-                })
+                res.redirect('/')
               }
           });
           }
@@ -88,3 +87,13 @@ exports.sendmailpost=async(req,res)=>{
     //     }
     // });
 }
+
+exports.pdfconverter=(req, res) => {
+    ejs.renderFile(path.join(__dirname,"../views/shop.ejs"),{about:"this is page about to learn EJS",data:User.fatchdata() }, function(err, str) {
+      if (err) return res.send(err);
+      pdf.create(str).toFile("report.pdf", function(err, data) {
+        if (err) return res.send(err);
+        res.sendfile(path.join(__dirname,'../report.pdf'))
+      });
+    });
+  }
