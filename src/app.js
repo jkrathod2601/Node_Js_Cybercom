@@ -2,6 +2,9 @@ const express=require('express');
 const app= express();
 const router=require("../core/route.js")
 
+app.use(express.json())
+app.use(express.urlencoded({extended:true}))
+
 // console.log(router)
 
 
