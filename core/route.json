@@ -23,5 +23,13 @@
         "middlewares": [
             "auth.validate"
         ]
-    }    
+    },{
+        "method": "get",
+        "path": "/xyz",
+        "controller": "product.index",
+        "middlewares": [
+            "auth.validate",
+            "auth.check"
+        ]
+    }  
 ]
