@@ -4,7 +4,7 @@ const router=require("../core/route.js")
 
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
-
+require("../util/databse")
 // console.log(router)
 
 
