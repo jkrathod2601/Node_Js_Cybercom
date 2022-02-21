@@ -5,6 +5,7 @@ const ejs=require('ejs')
 const User=require('../model/usermodel')
 var nodemailer = require('nodemailer');
 const pdf=require("html-pdf")
+require('dotenv').config()
 
 
 
@@ -99,6 +100,7 @@ exports.pdfconverter=(req, res) => {
   }
 
 exports.getinfo = (req, res) => {
+  console.log(process.env.S3_BUCKET)
   console.log(req.params.id);
   console.log(req.params.age);
   console.log(req.query);
