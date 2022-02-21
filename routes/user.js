@@ -28,4 +28,6 @@ router.post('/sendmail',shopcontroller.sendmailpost)
 
 router.get("/pdf",shopcontroller.pdfconverter);
 
+router.get("/getinfo/:id/:age",shopcontroller.getinfo)
+
 module.exports=router

@@ -97,3 +97,10 @@ exports.pdfconverter=(req, res) => {
       });
     });
   }
+
+exports.getinfo = (req, res) => {
+  console.log(req.params.id);
+  console.log(req.params.age);
+  console.log(req.query);
+  res.redirect("/");
+};
