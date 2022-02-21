@@ -1,26 +1,25 @@
 {
-  "name": "cybercom_node",
-  "version": "0.0.1",
+  "name": "node_js_cybercom",
+  "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "dependencies": {
+    "express": "^4.17.3",
+    "nodemon": "^2.0.15"
+  },
+  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start":"node ./simple_server_practice/http_server.js",
-    "dev":"nodemon app.js"
+    "dev":"nodemon ./src/app.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/jkrathod2601/Node_Js_Cybercom.git"
   },
-  "author": "jayraj rathod",
+  "author": "jayraj",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/jkrathod2601/Node_Js_Cybercom/issues"
   },
-  "homepage": "https://github.com/jkrathod2601/Node_Js_Cybercom#readme",
-  "dependencies": {
-    "express": "^4.17.2",
-    "nodemon": "^2.0.15"
-  }
+  "homepage": "https://github.com/jkrathod2601/Node_Js_Cybercom#readme"
 }
-
