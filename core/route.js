@@ -1,17 +1,17 @@
-const data = require("./route.json");
+const data = require("../util/route.json");
 const express = require("express");
 const fs = require("fs");
 const path = require("path");
 const app = express();
 const router = new express.Router();
 
-// accessing the all file name of middleware and controller
-const file_name_controller = fs.readdirSync(
-  path.join(__dirname, "../controller")
-);
-const file_name_middleware = fs.readdirSync(
-  path.join(__dirname, "../middleware")
-);
+// // accessing the all file name of middleware and controller
+// const file_name_controller = fs.readdirSync(
+//   path.join(__dirname, "../controller")
+// );
+// const file_name_middleware = fs.readdirSync(
+//   path.join(__dirname, "../middleware")
+// );
 // creating the object that imports validate file
 const imports = {};
 const imports_controller = {};
