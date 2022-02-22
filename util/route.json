@@ -10,7 +10,7 @@
     {
         "method": "get",
         "path": "/products",
-        "controller": "product.index",
+        "controller": "product.inde",
         "middlewares": [
             "auth.validate",
             "auth.check"
@@ -21,7 +21,8 @@
         "path": "/products",
         "controller": "product.add",
         "middlewares": [
-            "auth.validate"
+            "auth.validate",
+            "auth.check"
         ]
     },{
         "method": "get",
@@ -33,3 +34,4 @@
         ]
     }  
 ]
+

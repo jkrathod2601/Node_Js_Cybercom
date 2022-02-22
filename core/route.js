@@ -1,51 +1,30 @@
-const data = require("../util/route.json");
+const route_json_array = require("../util/route.json");
 const express = require("express");
-const fs = require("fs");
-const path = require("path");
-const app = express();
 const router = new express.Router();
+const validateerror=require('../src/extra/validateerror')
 
-// // accessing the all file name of middleware and controller
-// const file_name_controller = fs.readdirSync(
-//   path.join(__dirname, "../controller")
-// );
-// const file_name_middleware = fs.readdirSync(
-//   path.join(__dirname, "../middleware")
-// );
-// creating the object that imports validate file
-const imports = {};
-const imports_controller = {};
-// console.log(file_name)
-// console.log('from router file')
-console.log("--------------------------------");
-data.forEach((ele) => {
+
+
+route_json_array.forEach((ele,index) => {
   try {
-    // for middleware require
+    // setting up middleware
     let middlewares = ele.middlewares.map((x) => {
-      // get file name
-      let value = x.split(".")[0];
-      // get middleware name
-      let value2 = x.split(".")[1];
-      // require this into tyhe middleware object
-      imports[value] = require(`../middleware/${value}`);
-      // console.log(imports[value][value2])
-      return imports[value][value2];
+      let middleware_file_name = x.split(".")[0];
+      let middleware_function_name = x.split(".")[1];
+      const middleware_file = require(`${process.env.middleware_path}${middleware_file_name}`);
+      return middleware_file[middleware_function_name];
     });
-    //imort controller
-    imports_controller[ele.controller.split(".")[0]] = require(`../controller/${
-      ele.controller.split(".")[0]
-    }`);
-    const controller = eval(
-      imports_controller[ele.controller.split(".")[0]][
-        ele.controller.split(".")[1]
-      ]
-    );
-    // creating the dynamic route
+    //setting up controller
+    let [controller_filname, controller_functionname] =ele.controller.split(".");
+    const controller_calling = require(`${process.env.controller_path}${controller_filname}`);
+    const controller = controller_calling[controller_functionname];
+
     router[ele.method](ele.path, middlewares, controller);
   } catch (error) {
-    console.log("check your controller or middlewares path and name");
+    validateerror(ele,index)
   }
 });
-// console.log(imports)
+
 module.exports = router;
-console.log("--------------------------------");
+
+
