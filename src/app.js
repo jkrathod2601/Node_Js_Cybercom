@@ -2,7 +2,7 @@ require("dotenv").config();
 const express = require("express");
 const app = express();
 const router = require("../core/route.js");
-// const chalk=require('chalk')
+const chalk=require('chalk')
 const colors = require("colors");
 const sequelize = require("../util/databse");
 const portcheck = require("../src/extra/portcheck");
@@ -34,7 +34,7 @@ const servercreation = async () => {
       servercreation();
     } else {
       readline.question(
-        `yes or no for creating server on port ${port}?`,
+        chalk.green(`yes or no for creating server on port ${port}?`),
         (answer_port_choice) => {
           if (answer_port_choice == "yes") {
             app.listen(port, () => {
