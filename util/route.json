@@ -10,7 +10,7 @@
     {
         "method": "get",
         "path": "/products",
-        "controller": "product.inde",
+        "controller": "product.index",
         "middlewares": [
             "auth.validate",
             "auth.check"
