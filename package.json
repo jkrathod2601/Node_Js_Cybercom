@@ -1,33 +1,17 @@
 {
-  "name": "node_js_cybercom",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "dependencies": {
-    "body-parser": "^1.19.2",
-    "chalk": "^4.1.1",
-    "chalk-pipe": "^5.1.1",
-    "color": "^4.2.1",
-    "colors": "^1.4.0",
-    "dotenv": "^16.0.0",
-    "express": "^4.17.3",
-    "mysql2": "^2.3.3",
-    "nodemon": "^2.0.15",
-    "sequelize": "^6.16.2"
-  },
-  "devDependencies": {},
+  "name": "node-js-cybercom",
+  "version": "0.0.0",
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon ./src/app.js"
+    "start": "nodemon ./bin/www"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/jkrathod2601/Node_Js_Cybercom.git"
-  },
-  "author": "jayraj",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/jkrathod2601/Node_Js_Cybercom/issues"
-  },
-  "homepage": "https://github.com/jkrathod2601/Node_Js_Cybercom#readme"
+  "dependencies": {
+    "chalk": "^4.1.1",
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "ejs": "~2.6.1",
+    "express": "~4.16.1",
+    "http-errors": "~1.6.3",
+    "morgan": "~1.9.1"
+  }
 }
