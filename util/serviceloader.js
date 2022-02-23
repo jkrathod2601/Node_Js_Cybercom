@@ -6,9 +6,10 @@ let files = fs.readdirSync(path.join(__dirname, '../service'));
 let service_d={}
 
 files.forEach( fileName => {
-    let file_a_name=fileName.split('.')[0]
-    service_d[file_a_name]=require(`../service/${fileName}`);
+    let [file_a_name]=fileName.split('.')
+    global[file_a_name]=require(`../service/${fileName}`);
 });
 
 
-module.exports=service_d
+global.service=service_d
+// module.exports=service_d
