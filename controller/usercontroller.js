@@ -19,13 +19,31 @@ exports.adduser=(req,res,next)=>{
 }
 
 exports.deleteuser=(req,res,next)=>{
-    let id=req.params.id
-    console.log(id)
     console.log(chalk.yellow("delete user is calling"))
+    let id=req.params.id
+    User.deleteuser(id).then((data)=>{
+        res.status(200).send(data)
+    }).catch((err)=>{
+        res.status(404).send(err)
+    })
 }
 
 exports.updateuser=(req,res,next)=>{
     let id=req.params.id
+    User.updateuser(id,req.body).then((data)=>{
+        res.status(200).send(data)
+    }).catch((err)=>{
+        res.status(500).send(err)
+    })
     console.log(id)
     console.log(chalk.yellow("update user is called"))
+}
+
+exports.singleuser=(req,res,next)=>{
+    let id=req.params.id
+    User.singleuserfind(id).then((data)=>{
+        res.status(200).send(data)
+    }).catch((err)=>{
+        res.status(404).send(err)
+    })
 }
