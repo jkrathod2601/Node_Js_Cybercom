@@ -1,22 +1,20 @@
-const user_data={}
-
-
-module.exports=class User{
-    constructor(geting_user_data){
-        this.id=geting_user_data.id;
-        this.name=geting_user_data.name;
-        this.age=geting_user_data.age
+const user_data={
+    "1":{
+        name:"jay",
+        age:20
     }
+}
 
-    adduser(){
+
+module.exports.adduser=(getuserdata)=>{
         return new Promise((resolve,reject)=>{
             let all_id_user_data=Object.keys(user_data)
-            if(all_id_user_data.includes(String(this.id))){
+            if(all_id_user_data.includes(String(getuserdata.id))){
                 reject("this id is allready prsent in a database")
             }else{
-                user_data[this.id]={
-                    name:this.name,
-                    age:this.age
+                user_data[getuserdata.id]={
+                    name:getuserdata.name,
+                    age:getuserdata.age
                 }
                 console.log(user_data)
                 resolve("user added sucessfully")
@@ -24,11 +22,11 @@ module.exports=class User{
         })
     }
 
-    static getusersdata(){
+module.exports.getusersdata=()=>{
         return user_data
     }
 
-    static updateuser(id,getting_user_data){
+    module.exports.updateuser=(id,getting_user_data)=>{
         return new Promise((resolve,reject)=>{
             let all_id_user_data=Object.keys(user_data)
             if(all_id_user_data.includes(String(id))){
@@ -45,7 +43,7 @@ module.exports=class User{
         })
     }
 
-    static deleteuser(id){
+    module.exports.deleteuser=(id)=>{
         return new Promise((resolve,reject)=>{
             let all_id_user_data=Object.keys(user_data)
             if(all_id_user_data.includes(String(id))){
@@ -57,7 +55,7 @@ module.exports=class User{
         })
     }
 
-    static singleuserfind(id){
+    module.exports.singleuserfind=(id)=>{
         return new Promise((resolve,reject)=>{
             let all_id_user_data=Object.keys(user_data)
             if(all_id_user_data.includes(String(id))){
@@ -67,4 +65,3 @@ module.exports=class User{
             }
         })
     }
-}

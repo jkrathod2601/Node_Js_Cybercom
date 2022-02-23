@@ -1,16 +1,17 @@
 const chalk=require('chalk')
-const User=require('../service/userservice')
+const service=require('../util/serviceloader')
+
 
 exports.getusers=async(req,res,next) =>{
     console.log(chalk.yellow("get user is calling"))
-    let all_user_data=await User.getusersdata()
+    let all_user_data=await service.userservice.getusersdata()
     res.status(200).json(all_user_data)
 }
 
-exports.adduser=(req,res,next)=>{
+exports.adduser=async(req,res,next)=>{
     console.log(chalk.yellow("add user is calling"))
-    let user=new User(req.body)
-    user.adduser().then((data)=>{
+    
+    await service.userservice.adduser(req.body).then((data)=>{
         res.status(200).send(data)
     }).catch((err)=>{
         console.log(chalk.red(err))
@@ -18,19 +19,19 @@ exports.adduser=(req,res,next)=>{
     })
 }
 
-exports.deleteuser=(req,res,next)=>{
+exports.deleteuser=async(req,res,next)=>{
     console.log(chalk.yellow("delete user is calling"))
     let id=req.params.id
-    User.deleteuser(id).then((data)=>{
+    await service.userservice.deleteuser(id).then((data)=>{
         res.status(200).send(data)
     }).catch((err)=>{
         res.status(404).send(err)
     })
 }
 
-exports.updateuser=(req,res,next)=>{
+exports.updateuser=async(req,res,next)=>{
     let id=req.params.id
-    User.updateuser(id,req.body).then((data)=>{
+    await service.userservice.updateuser(id,req.body).then((data)=>{
         res.status(200).send(data)
     }).catch((err)=>{
         res.status(500).send(err)
@@ -39,9 +40,9 @@ exports.updateuser=(req,res,next)=>{
     console.log(chalk.yellow("update user is called"))
 }
 
-exports.singleuser=(req,res,next)=>{
+exports.singleuser=async(req,res,next)=>{
     let id=req.params.id
-    User.singleuserfind(id).then((data)=>{
+    await service.userservice.singleuserfind(id).then((data)=>{
         res.status(200).send(data)
     }).catch((err)=>{
         res.status(404).send(err)
