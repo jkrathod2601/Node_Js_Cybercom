@@ -1,8 +1,7 @@
 const Product=require('../model/productmodel')
-const chalk=require('chalk')
 
 module.exports.addproduct = (getproduct) => {
-  console.log("add product service is calling");
+  console.log(framework.chalk.yellow("add product service is calling"));
   let { id, name } = getproduct;
   console.log(id, name);
   return new Promise(async (resolve, reject) => {
@@ -21,7 +20,7 @@ module.exports.addproduct = (getproduct) => {
 };
 
 module.exports.getproductdata = () => {
-  console.log("getproductdata service calling");
+  console.log(framework.chalk.yellow("getproductdata service calling"));
   return new Promise(async(resolve,reject)=>{
         Product.findAll({raw:true}).then((data)=>{
           resolve(data)
@@ -32,7 +31,7 @@ module.exports.getproductdata = () => {
 };
 
 module.exports.updateproduct = (id, getting_product_data) => {
-  console.log("updateproduct service calling");
+  console.log(framework.chalk.yellow("updateproduct service calling"));
   let {name}=getting_product_data
   console.log(name)
   return new Promise(async(resolve,reject)=>{
@@ -49,7 +48,7 @@ module.exports.updateproduct = (id, getting_product_data) => {
 };
 
 module.exports.deleteproduct = (id) => {
-  console.log("deleteproduct service calling");
+  console.log(framework.chalk.yellow("deleteproduct service calling"));
   return new Promise(async(resolve,reject)=>{
       Product.destroy({where:{id:id}}).then((data)=>{
           resolve(`data deleted successfully and affected row is ${data}`)
@@ -60,7 +59,7 @@ module.exports.deleteproduct = (id) => {
 };
 
 module.exports.singleproductfind = (id) => {
-  console.log("singleproductfind service calling");
+  console.log(framework.chalk.yellow("singleproductfind service calling"));
   return new Promise((resolve,reject)=>{
       Product.findAll({where:{id:id},raw:true}).then((data)=>{
           resolve(data)

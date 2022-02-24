@@ -1,7 +1,5 @@
-var express = require('express');
 const productcontroller = require('../controller/productcontroller')
-var router = express.Router();
-
+var router = framework.express.Router();
 /* GET users listing. */
 router
   .get("/product", productcontroller.getproduct)

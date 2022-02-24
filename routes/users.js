@@ -1,6 +1,5 @@
-var express = require('express');
 const usercontroller=require('../controller/usercontroller')
-var router = express.Router();
+var router = framework.express.Router();
 
 /* GET users listing. */
 router
