@@ -1,16 +1,27 @@
-require('./util/serviceloader')
-console.log(userservice)
+
+require("dotenv").config();
+require('./core/global')
 
 
-var createError = require('http-errors');
-var express = require('express');
+
+const sequelize=require('./util/database.js')
+
+sequelize.sync().then((data)=>{
+  // console.log(data)
+}).catch((err)=>[
+  console.error(err)
+])
+
+
 
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 var usersRouter = require('./routes/users');
-var app = express();
+const productroute=require('./routes/product')
+
+var app = framework.express();
 
 
 // view engine setup
@@ -20,21 +31,20 @@ app.set('view engine', 'ejs');
 
 
 app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(framework.express.json());
+app.use(framework.express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(framework.express.static(path.join(__dirname, 'public')));
 
 app.use(usersRouter);
+app.use(productroute)
+// require('./util/serviceloader')
 
 app.get('*',(req,res)=>{
   res.status(404).send("not found")
 })
 
-// catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  next(createError(404));
-});
+
 
 // error handler
 app.use(function(err, req, res, next) {
