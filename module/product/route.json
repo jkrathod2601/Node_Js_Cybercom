@@ -1,0 +1,28 @@
+[
+    {
+        "method": "get",
+        "path": "/products",
+        "controller": "porductc.done",
+        "middlewares": [
+            "auth.validate",
+            "auth.check"
+        ]
+    },
+    {
+        "method": "post",
+        "path": "/products",
+        "controller": "porductc.done",
+        "middlewares": [
+            "auth.validate",
+            "auth.check"
+        ]
+    },
+    {
+        "method": "delete",
+        "path": "/products",
+        "controller": "porductc.done",
+        "middlewares": [
+            "auth.validate"
+        ]
+    }
+]

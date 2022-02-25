@@ -1,0 +1,28 @@
+[
+    {
+        "method": "get",
+        "path": "/user",
+        "controller": "userc.done",
+        "middlewares": [
+            "auth.validate",
+            "auth.check"
+        ]
+    },
+    {
+        "method": "post",
+        "path": "/user",
+        "controller": "userc.done",
+        "middlewares": [
+            "auth.validate",
+            "auth.check"
+        ]
+    },
+    {
+        "method": "delete",
+        "path": "/user",
+        "controller": "userc.done",
+        "middlewares": [
+            "auth.validate"
+        ]
+    }
+]

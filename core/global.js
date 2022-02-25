@@ -40,6 +40,7 @@ const definefunction=(objecttostore,path)=>{
     })
 }
 definefunction(ufunction,functionpath)
+// console.log(ufunction)
 framework.ufunction=ufunction
 
 corefunction={}
@@ -49,9 +50,41 @@ all_core_function.forEach((f_name)=>{
     let [file_name]=f_name.split(".")
     corefunction[file_name]=require(core_function_path+"/"+f_name)
 })
-
-
 framework.corefunction=corefunction
+
+
+// adding module function and service
+let module_path=path.join(__dirname,"../module")
+let module_file=fs.readdirSync(module_path)
+
+module_file.forEach((ele)=>{
+    let function_path=`${module_path}/${ele}/function`
+    let service_path=`${module_path}/${ele}/service`
+    let function_array_names=fs.readdirSync(function_path)
+    let service_array_name=fs.readdirSync(service_path)
+    gfunction={}
+    gservice={}
+    function_array_names.forEach((f_name)=>{
+        let [function_name]=f_name.split(".")
+        gfunction[function_name]=require(`${function_path}/${f_name}`)
+    })
+    service_array_name.forEach((f_name)=>{
+        let [function_name]=f_name.split(".")
+        gservice[function_name]=require(`${service_path}/${f_name}`)
+    })
+    framework[ele]={
+        function:gfunction,
+        service:gservice
+    }
+})
+
+
+
+
+
+
+
+
 
 global.framework=framework
 

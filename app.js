@@ -12,6 +12,7 @@ sequelize
 var usersRouter = require("./routes/users");
 const productroute = require("./routes/product");
 
+const setrouote=require("./core/setautoroute")
 var app = framework.express();
 
 // view engine setup
@@ -24,8 +25,9 @@ app.use(framework.express.urlencoded({ extended: false }));
 app.use(framework.cookieParser());
 app.use(framework.express.static(framework.path.join(__dirname, "public")));
 
-app.use(usersRouter);
-app.use(productroute);
+// app.use(usersRouter);
+// app.use(productroute);
+app.use(setrouote);
 // require('./util/serviceloader')
 
 app.get("*", (req, res) => {
