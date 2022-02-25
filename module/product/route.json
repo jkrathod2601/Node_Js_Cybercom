@@ -20,7 +20,7 @@
     {
         "method": "delete",
         "path": "/products",
-        "controller": "porductc.done",
+        "controller": "productcontroller.done1",
         "middlewares": [
             "auth.validate"
         ]
