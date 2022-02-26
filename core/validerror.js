@@ -1,5 +1,3 @@
-
-
 const validateerror = (ele, index) => {
   console.log("-----------------------------");
   console.error(index + 1);
