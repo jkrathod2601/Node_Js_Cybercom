@@ -1,31 +1,43 @@
-const express=require('express');
-const app=express()
-const userrout=require('./routes/user')
+require("dotenv").config();
+require('./core/global')
+require('./core/databasesync')
 
-app.use(userrout)
-// add prefix at the bigning
-//app.use("/admin", userrout)
-// it access by /admin/add ex
+var createError = require('http-errors');
+var express = require('express');
+var path = require('path');
+var cookieParser = require('cookie-parser');
+var logger = require('morgan');
 
-// app.use((req,res,next) => {
-//     console.log("hello from 1st")
-//     next()
-// })
+var app = express();
+let routeset=require('./core/setautoroute')
 
-// app.use((req,res,next) => {
-//     console.log("hello from 2")
-//     res.send("<h1>hello from server 2</h1>")
-// })
+// view engine setup
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
 
-// page not found
-// app.get("*",(req,res)=>{
-//     res.send("error found plz check some other page")
-// })
-//page  not found
-app.use((req,res,next)=>{
-    res.status(404).send("not found")
-})
+app.use(routeset)
+app.use(logger('dev'));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'public')));
 
-app.listen(3000,()=>{
-    console.log("server started on the porn number 3000")
-})
+
+// catch 404 and forward to error handler
+app.use(function(req, res, next) {
+  next(createError(404));
+});
+
+
+// error handler
+app.use(function(err, req, res, next) {
+  // set locals, only providing error in development
+  res.locals.message = err.message;
+  res.locals.error = req.app.get('env') === 'development' ? err : {};
+
+  // render the error page
+  res.status(err.status || 500);
+  res.render('error');
+});
+
+module.exports = app;

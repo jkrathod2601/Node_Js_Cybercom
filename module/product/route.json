@@ -1,0 +1,44 @@
+[
+    {
+        "method": "get",
+        "path": "/products",
+        "controller": "productcontroller.getproduct",
+        "middlewares": [
+            "auth.validate",
+            "auth.check"
+        ]
+    },
+    {
+        "method": "post",
+        "path": "/products",
+        "controller": "productcontroller.addproduct",
+        "middlewares": [
+            "auth.validate",
+            "auth.check"
+        ]
+    },
+    {
+        "method": "delete",
+        "path": "/products",
+        "controller": "productcontroller.deleteproduct",
+        "middlewares": [
+            "auth.validate"
+        ]
+    },
+    {
+        "method": "put",
+        "path": "/products",
+        "controller": "productcontroller.updateproduct",
+        "middlewares": [
+            "auth.validate"
+        ]
+    },
+    {
+        "method": "get",
+        "path": "/products/:id",
+        "controller": "productcontroller.singleproduct",
+        "middlewares": [
+            "auth.validate"
+        ]
+    }
+]

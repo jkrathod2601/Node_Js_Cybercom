@@ -1,8 +1,0 @@
->> alternative of express
-
-1)vanila node.js
-2)adonis.js
-3)Koa
-4)sails.js
-
->> express use by default http server
