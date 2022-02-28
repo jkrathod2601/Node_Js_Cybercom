@@ -9,6 +9,7 @@ exports.getproduct=async(req,res,next) =>{
  
  exports.addproduct=async(req,res,next)=>{
      console.log(framework.chalk.yellow("add product is calling"));
+     console.log(req.body)
      await framework.product.moduleservice.productservice.addproduct(req.body).then((data)=>{
          res.status(200).send(data)
      }).catch((err)=>{

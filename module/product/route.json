@@ -19,7 +19,7 @@
     },
     {
         "method": "delete",
-        "path": "/products",
+        "path": "/products/:id",
         "controller": "productcontroller.deleteproduct",
         "middlewares": [
             "auth.validate"
@@ -27,7 +27,7 @@
     },
     {
         "method": "put",
-        "path": "/products",
+        "path": "/products/:id",
         "controller": "productcontroller.updateproduct",
         "middlewares": [
             "auth.validate"
