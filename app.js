@@ -2,7 +2,7 @@ const { exec } = require("child_process");
 require("dotenv").config();
 require('./core/global')
 require('./core/databasesync')
-// require('./core/automig')
+require('./core/automig')
 
 var createError = require('http-errors');
 var express = require('express');
@@ -26,17 +26,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(routeset)
 
-exec("npx sequelize-cli db:migrate", (error, stdout, stderr) => {
-  if (error) {
-      console.log(`error: ${error.message}`);
-      return;
-  }
-  if (stderr) {
-      console.log(`stderr: ${stderr}`);
-      return;
-  }
-  console.log(`stdout: ${stdout}`);
-});
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
