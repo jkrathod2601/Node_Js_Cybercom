@@ -1,7 +1,7 @@
 const { exec } = require("child_process");
 require("dotenv").config();
 require('./core/global')
-require('./core/databasesync')
+// require('./core/databasesync')
 require('./core/automig')
 
 var createError = require('http-errors');

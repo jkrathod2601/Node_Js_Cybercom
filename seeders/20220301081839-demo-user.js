@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = {
-  async up (queryInterface, Sequelize) {
+  async up ({context:queryInterface}) {
     return queryInterface.bulkInsert('cars', [{
       Name: 'BMW',
       modelName: 'x1',
@@ -22,7 +22,7 @@ module.exports = {
     }]);
   },
 
-  async down (queryInterface, Sequelize) {
+  async down ({context:queryInterface}) {
    await queryInterface.bulkDelete('cars', null, {});
   }
 };

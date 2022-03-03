@@ -2,14 +2,17 @@
 const Sequelize = require('sequelize');
 module.exports = {
   async up({context:queryInterface}) {
-    await queryInterface.createTable('randome_tables', {
+    await queryInterface.createTable('User5s', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      firstName: {
+      email: {
+        type: Sequelize.STRING
+      },
+      password: {
         type: Sequelize.STRING
       },
       createdAt: {
@@ -23,6 +26,6 @@ module.exports = {
     });
   },
   async down({context:queryInterface}) {
-    await queryInterface.dropTable('randome_tables');
+    await queryInterface.dropTable('User5s');
   }
 };
