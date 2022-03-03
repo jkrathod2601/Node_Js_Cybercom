@@ -1,8 +1,10 @@
 const { exec } = require("child_process");
 require("dotenv").config();
 require('./core/global')
-// require('./core/databasesync')
 require('./core/automig')
+// require('./core/databasesync')
+
+
 
 var createError = require('http-errors');
 var express = require('express');
@@ -25,6 +27,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(routeset)
+require('./database/models/index')
+
 
 
 

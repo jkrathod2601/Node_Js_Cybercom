@@ -19,16 +19,34 @@ const sequelize=new Sequelize(
     }
 );
 
+const migrationfile_array=framework.fs.readdirSync(framework.path.join(__dirname, '../module/'))
+// console.log(migrationfile_array)
+let miration_global_string=""
+migrationfile_array.forEach((ele)=>{
+    miration_global_string=miration_global_string+`module/${ele}/migration/*.js,`
+})
+
+const seeder_array=framework.fs.readdirSync(framework.path.join(__dirname, '../module/'))
+// console.log(migrationfile_array)
+let seeder_global_string=""
+migrationfile_array.forEach((ele)=>{
+  seeder_global_string=seeder_global_string+`module/${ele}/seeders/*.js,`
+})
+
 
 const umzug = new Umzug({
-    migrations: { glob: 'migrations/*.js' },
+    migrations: {
+        glob: `{${miration_global_string},database/migrations/*.js}`
+    },
     context: sequelize.getQueryInterface(),
     storage: new SequelizeStorage({ sequelize }),
     logger: console
   });
 
   const seeder = new Umzug({
-    migrations: { glob: 'seeders/*.js' },
+    migrations: { glob: 
+      `{${seeder_global_string},database/seeders/*.js}`
+    },
     context: sequelize.getQueryInterface(),
     storage: new SequelizeStorage({ sequelize }),
     logger: console
@@ -36,7 +54,7 @@ const umzug = new Umzug({
 
 
   const seederadd=async()=>{
-    await seeder.down({ to: 0 })
+    // await seeder.down({ to: 0 })
     const seeder_add=await seeder.pending()
     if (seeder_add.length > 0) {
         console.log(framework.chalk.blue("this is your remaining seeders"));
@@ -54,14 +72,8 @@ const umzug = new Umzug({
   }
 
 const run = async () => {
-    // executed migrations
-    // const migrations_excecuted =await umzug.executed();
-    // console.log(migrations_excecuted)
-    
-
-
     //migrations   
-    await umzug.down({ to: 0 });
+  // await umzug.down({ to: 0 });
   const migrations = await umzug.pending();
   if (migrations.length > 0) {
     console.log(framework.chalk.blue("this is your remaining migration"));
@@ -116,3 +128,4 @@ run();
 //         }
 //     })
 // })
+

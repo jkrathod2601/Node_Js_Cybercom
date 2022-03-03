@@ -6,6 +6,7 @@ const path=require('path');
 var express = require('express');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+global.Sequelize=require('sequelize');
 
 // adding npm global package
 framework.chalk=chalk

@@ -1,21 +1,17 @@
 'use strict';
-const Sequelize = require('sequelize');
 module.exports = {
-  async up({context:queryInterface}) {
-    await queryInterface.createTable('Users', {
+  async up({ context: queryInterface }) {
+    await queryInterface.createTable('cars', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      firstName: {
+      name: {
         type: Sequelize.STRING
       },
-      lastName: {
-        type: Sequelize.STRING
-      },
-      email: {
+      price: {
         type: Sequelize.STRING
       },
       createdAt: {
@@ -28,7 +24,7 @@ module.exports = {
       }
     });
   },
-  async down({context:queryInterface}) {
-    await queryInterface.dropTable('Users');
+  async down({ context: queryInterface }) {
+    await queryInterface.dropTable('cars');
   }
 };
