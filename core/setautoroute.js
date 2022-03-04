@@ -28,8 +28,8 @@ module_array.forEach((dirname)=>{
     
         router[ele.method](ele.path, middlewares, controller);
       } catch (error) {
-        // validateerror(ele,index)
-        console.log(error);
+        validateerror(ele,index)
+        // console.log(error);
       }
     });
   }else{

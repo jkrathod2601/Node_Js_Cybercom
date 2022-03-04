@@ -64,8 +64,14 @@ const umzug = new Umzug({
         readline.question("are you ready to add  all seeder? y / n", async (ans) => {
           if (ans == "y") {
             await seeder.up();
+            framework.express().listen(3000,()=>{
+              console.log(framework.chalk.green("server stared successfully"))
+            })
           } else {
             console.log("start development");
+            framework.express().listen(3000,()=>{
+              console.log(framework.chalk.green("server stared successfully"))
+            })
           }
         });
     }
@@ -88,6 +94,9 @@ const run = async () => {
           seederadd()
         } else {
           console.log("start development");
+          framework.express().listen(3000,()=>{
+            console.log(framework.chalk.green("server stared successfully"))
+          })
         }
       }
     );
