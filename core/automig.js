@@ -23,7 +23,7 @@ const migrationfile_array=framework.fs.readdirSync(framework.path.join(__dirname
 // console.log(migrationfile_array)
 let miration_global_string=""
 migrationfile_array.forEach((ele)=>{
-    miration_global_string=miration_global_string+`module/${ele}/migration/*.js,`
+    miration_global_string=miration_global_string+`module/${ele}/migrations/*.js,`
 })
 
 const seeder_array=framework.fs.readdirSync(framework.path.join(__dirname, '../module/'))
@@ -54,7 +54,7 @@ const umzug = new Umzug({
 
 
   const seederadd=async()=>{
-    // await seeder.down({ to: 0 })
+    await seeder.down({ to: 0 })
     const seeder_add=await seeder.pending()
     if (seeder_add.length > 0) {
         console.log(framework.chalk.blue("this is your remaining seeders"));
@@ -73,7 +73,7 @@ const umzug = new Umzug({
 
 const run = async () => {
     //migrations   
-  // await umzug.down({ to: 0 });
+  await umzug.down({ to: 0 });
   const migrations = await umzug.pending();
   if (migrations.length > 0) {
     console.log(framework.chalk.blue("this is your remaining migration"));
@@ -87,7 +87,6 @@ const run = async () => {
           const migrations_done = await umzug.up();
           seederadd()
         } else {
-          seederadd()
           console.log("start development");
         }
       }

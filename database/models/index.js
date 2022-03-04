@@ -35,7 +35,7 @@ const module_array=fs.readdirSync(path.join(__dirname,"../../module"))
 module_array.forEach((ele) => {
   fs.readdirSync(path.join(__dirname,`../../module/${ele}/model`))
     .forEach((file) => {
-      const model = require(path.join(__dirname,`../../module/${ele}/model/${file}/`))(
+      const model = require(path.join(__dirname,`../../modules/${ele}/model/${file}/`))(
         sequelize,
         Sequelize.DataTypes
       );
