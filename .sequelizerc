@@ -1,0 +1,36 @@
+const path = require('path');
+const fs=require('fs');
+const reader = require("readline-sync");
+
+try{
+    let answer = reader.question("are you ready to store data into root folder? yes / no ?");
+        if(answer=="no"){
+            console.log(fs.readdirSync(path.join(__dirname, "./module")))
+            let answer = reader.question("in which module you want to store?")
+            module.exports={
+                'config': path.resolve('config', './config/config.json'),
+                'models-path': path.resolve(`./module/${answer}`, 'models'),
+                'seeders-path': path.resolve(`./module/${answer}`, 'seeders'),
+                'migrations-path': path.resolve(`./module/${answer}`, 'migrations')
+            }
+        }else{
+            module.exports={
+                'config': path.resolve('config', './config/config.json'),
+                'models-path': path.resolve(`./database/`, 'models'),
+                'seeders-path': path.resolve(`./database/`, 'seeders'),
+                'migrations-path': path.resolve(`./database/`, 'migrations')
+            }
+        }
+}catch(err){
+    console.log(framework.chalk.red("check your model name"))
+}
+
+
+
+
+
+
+
+
+
+
