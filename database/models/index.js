@@ -54,4 +54,5 @@ module_array.forEach((ele) => {
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
+global.db=db
 module.exports = db;

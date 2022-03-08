@@ -6,15 +6,34 @@
         "middlewares": [
             "auth.validate",
             "auth.check"
+        ],
+        "access":[
+            "admin"
         ]
     },
     {
         "method": "post",
         "path": "/user",
-        "controller": "userc.done",
+        "controller": "usercontroller.done1",
         "middlewares": [
             "auth.validate",
             "auth.check"
+        ],
+        "access":[
+            
+        ]
+    },
+    {
+        "method": "post",
+        "path": "/userlogin",
+        "controller": "usercontroller.done2",
+        "middlewares": [
+            "auth.validate",
+            "auth.check"
+        ],
+        "access":[
+            "student",
+            "teacher"
         ]
     },
     {
@@ -23,6 +42,10 @@
         "controller": "userc.done",
         "middlewares": [
             "auth.validate"
+        ],
+        "access":[
+            "teacher",
+            "admin"
         ]
     }
 ]

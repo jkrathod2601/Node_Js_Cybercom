@@ -6,6 +6,9 @@
         "middlewares": [
             "auth.validate",
             "auth.check"
+        ],
+        "access":[
+            
         ]
     },
     {
@@ -15,6 +18,9 @@
         "middlewares": [
             "auth.validate",
             "auth.check"
+        ],
+        "access":[
+            "admin"
         ]
     },
     {
@@ -23,6 +29,9 @@
         "controller": "productcontroller.deleteproduct",
         "middlewares": [
             "auth.validate"
+        ],
+        "access":[
+            "admin"
         ]
     },
     {
@@ -31,6 +40,9 @@
         "controller": "productcontroller.updateproduct",
         "middlewares": [
             "auth.validate"
+        ],
+        "access":[
+            "admin"
         ]
     },
     {
@@ -39,6 +51,9 @@
         "controller": "productcontroller.singleproduct",
         "middlewares": [
             "auth.validate"
+        ],
+        "access":[
+            "admin"
         ]
     }
 ]

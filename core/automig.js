@@ -54,7 +54,7 @@ const umzug = new Umzug({
 
 
   const seederadd=async()=>{
-    await seeder.down({ to: 0 })
+    // await seeder.down({ to: 0 })
     const seeder_add=await seeder.pending()
     if (seeder_add.length > 0) {
         console.log(framework.chalk.blue("this is your remaining seeders"));
@@ -64,14 +64,14 @@ const umzug = new Umzug({
         readline.question("are you ready to add  all seeder? y / n", async (ans) => {
           if (ans == "y") {
             await seeder.up();
-            framework.express().listen(3000,()=>{
-              console.log(framework.chalk.green("server stared successfully"))
-            })
+            // framework.express().listen(3000,()=>{
+            //   console.log(framework.chalk.green("server stared successfully"))
+            // })
           } else {
             console.log("start development");
-            framework.express().listen(3000,()=>{
-              console.log(framework.chalk.green("server stared successfully"))
-            })
+            // framework.express().listen(3000,()=>{
+            //   console.log(framework.chalk.green("server stared successfully"))
+            // })
           }
         });
     }
@@ -79,7 +79,7 @@ const umzug = new Umzug({
 
 const run = async () => {
     //migrations   
-  await umzug.down({ to: 0 });
+  // await umzug.down({ to: 0 });
   const migrations = await umzug.pending();
   if (migrations.length > 0) {
     console.log(framework.chalk.blue("this is your remaining migration"));
@@ -94,9 +94,9 @@ const run = async () => {
           seederadd()
         } else {
           console.log("start development");
-          framework.express().listen(3000,()=>{
-            console.log(framework.chalk.green("server stared successfully"))
-          })
+          // framework.express().listen(3000,()=>{
+          //   console.log(framework.chalk.green("server stared successfully"))
+          // })
         }
       }
     );
