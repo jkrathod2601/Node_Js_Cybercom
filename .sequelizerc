@@ -21,7 +21,6 @@ async function run(){
                     'seeders-path': path.resolve(`./module/${obj_module[answer]}`, 'seeders'),
                     'migrations-path': path.resolve(`./module/${obj_module[answer]}`, 'migrations')
                 }
-                
             }else{
                 module.exports={
                     'config': path.resolve('config', './config/config.json'),
