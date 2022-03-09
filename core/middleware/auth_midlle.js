@@ -31,7 +31,7 @@ exports.validate = function(access_array){
            }
         }
         catch (error) {
-            console.log(error)
+            console.log(framework.chalk.red(error.message))
             res.end("unauthorized user")
         }
     }

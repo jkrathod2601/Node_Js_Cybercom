@@ -2,8 +2,7 @@ const { exec } = require("child_process");
 require("dotenv").config();
 require('./core/global')
 require('./core/automig')
-// require('./core/databasesync')
-
+//require('./core/databasesync')
 
 
 var createError = require('http-errors');
@@ -18,6 +17,7 @@ let routeset=require('./core/setautoroute');
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+
 
 
 app.use(logger('dev'));
