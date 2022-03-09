@@ -8,8 +8,9 @@
             "auth.check"
         ],
         "access":[
+            "teacher",
             "admin",
-            "teacher"
+            "student"
         ]
     },
     {

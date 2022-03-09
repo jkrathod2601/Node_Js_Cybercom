@@ -15,7 +15,7 @@ framework.fs=fs
 framework.express=express
 framework.cookieParser=cookieParser
 framework.logger=logger
-framework.jwtkey='123456789'
+framework.jwtkey='xabdshasidbajdsiuadbanbccjatfdbasjdvyuasdbkjasbdkjhayds'
 
 
 // adding global services from root folder

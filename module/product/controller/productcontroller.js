@@ -1,4 +1,4 @@
-exports.getproduct = async (req, res, next) => {
+module.exports.getproduct = async (req, res, next) => {
   console.log(framework.chalk.yellow("get product is calling"));
   await framework.product.moduleservice.productservice
     .getproductdata()
@@ -10,7 +10,7 @@ exports.getproduct = async (req, res, next) => {
     });
 };
 
-exports.addproduct = async (req, res, next) => {
+module.exports.addproduct = async (req, res, next) => {
   console.log(framework.chalk.yellow("add product is calling"));
   console.log(req.body);
   await framework.product.moduleservice.productservice
@@ -23,7 +23,7 @@ exports.addproduct = async (req, res, next) => {
     });
 };
 
-exports.deleteproduct = async (req, res, next) => {
+module.exports.deleteproduct = async (req, res, next) => {
   let id = req.params.id;
   console.log(framework.chalk.yellow("delete product is calling"));
   framework.product.moduleservice.productservice
@@ -36,7 +36,7 @@ exports.deleteproduct = async (req, res, next) => {
     });
 };
 
-exports.updateproduct = async (req, res, next) => {
+module.exports.updateproduct = async (req, res, next) => {
   let id = req.params.id;
   console.log(framework.chalk.yellow("update product is calling"));
   framework.product.moduleservice.productservice
@@ -49,7 +49,7 @@ exports.updateproduct = async (req, res, next) => {
     });
 };
 
-exports.singleproduct = async (req, res, next) => {
+module.exports.singleproduct = async (req, res, next) => {
   let id = req.params.id;
   console.log(framework.chalk.yellow("single product is calling"));
   framework.product.moduleservice.productservice

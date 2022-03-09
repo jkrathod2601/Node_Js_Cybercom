@@ -6,7 +6,7 @@ module.exports.adduser = async (body_data) => {
     db.user
       .create({
         ...body_data,
-        token:jwt.sign(body_data,"123456789"),
+        token:jwt.sign(body_data,framework.jwtkey,{expiresIn:"1H"}),
       })
       .then((data) => {
         resolve("data added successfully");
