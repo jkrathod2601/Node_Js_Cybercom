@@ -1,38 +1,106 @@
-const jwt=require('jsonwebtoken')
-exports.validate = function(access_array){
+const jwt = require("jsonwebtoken");
+exports.validate = function (access_array) {
     return async (req, res, next) => {
         try {
-            if(access_array.length > 0){
+            if (access_array.length > 0) {
                 // console.log(req.headers.jwttoken)
-                const access_user=jwt.verify(req.headers.jwttoken,framework.jwtkey)
-                // console.log(access_user.exp)
+                const access_user = jwt.verify(req.headers.jwttoken, framework.jwtkey);
+                console.log(access_user.exp-(Math.round(new Date().getTime()/1000)))
                 // console.log(Math.round(new Date().getTime()/1000))
                 // console.log(date1.getTime()-date.getTime())
-                if(Math.round(new Date().getTime()/1000)-access_user.exp>=300){
-                    console.log("jwt token changed")
-                    let jwt_token=jwt.sign({
-                        name:req.body.name,
-                        role:req.body.role
-                    },framework.jwtkey,{expiresIn:"1H"})
-                    await db.user.update({token:jwt_token},{where:{name:access_user.name,role:access_user.role}}).then((data) => {
-                        console.log(data)
-                    })
-                }
-                if(access_array.includes(access_user.role)){
-                    console.log(framework.chalk.green("successfully validate login"))
+                if (access_array.includes(access_user.role)) {
+                    console.log(framework.chalk.green("successfully validate login"));
+
+                    if (
+                        Math.round((access_user.exp) - (new Date().getTime() / 1000)) <= 300
+                    ) {
+                        console.log("------------------------");
+                        console.log(framework.chalk.green("jwt token changed"));
+                        let jwt_token = jwt.sign({
+                                name: access_user.name,
+                                role: access_user.role,
+                            },
+                            framework.jwtkey, {
+                                expiresIn: "1h",
+                            }
+                        );
+                        let refreshtoken = jwt.sign({
+                                name: access_user.name,
+                                role: access_user.role,
+                            },
+                            framework.jwtkey, {
+                                expiresIn: "2H",
+                            }
+                        );
+                        await db.user
+                            .update({
+                                token: jwt_token,
+                                refreshtoken: refreshtoken,
+                            }, {
+                                where: {
+                                    name: access_user.name,
+                                    role: access_user.role,
+                                },
+                            })
+                            .then((data) => {
+                                console.log(data);
+                            });
+                    }
+
                     next();
-                }else{
-                    res.end("unauthorized user")
+                } else {
+                    res.end("unauthorized user");
                 }
+            } else {
+                console.log("this route don't have an validation");
+                next();
             }
-           else{
-               console.log("this route don't have an validation")
-               next()
-           }
+        } catch (error) {
+            const refreshtoken_veryfine = jwt.verify(
+                req.headers.refreshtoken,
+                framework.jwtkey
+            );
+            if (
+                error.message == "jwt expired" &&
+                access_array.includes(refreshtoken_veryfine.role)
+            ) {
+                let jwt_token = jwt.sign({
+                        name: refreshtoken_veryfine.name,
+                        role: refreshtoken_veryfine.role,
+                    },
+                    framework.jwtkey, {
+                        expiresIn: "1h",
+                    }
+                );
+                let refreshtoken = jwt.sign({
+                        name: refreshtoken_veryfine.name,
+                        role: refreshtoken_veryfine.role,
+                    },
+                    framework.jwtkey, {
+                        expiresIn: "2H",
+                    }
+                );
+                await db.user
+                    .update({
+                        token: jwt_token,
+                        refreshtoken: refreshtoken,
+                    }, {
+                        where: {
+                            name: refreshtoken_veryfine.name,
+                            role: refreshtoken_veryfine.role,
+                        },
+                    })
+                    .then((data) => {
+                        console.log(data);
+                    });
+                console.log(framework.chalk.green("------------------------"));
+                console.log(
+                    framework.chalk.green("changed the token and refresh token")
+                );
+                res.end("token has been changed");
+            } else {
+                res.send(message.error);
+            }
         }
-        catch (error) {
-            console.log(framework.chalk.red(error.message))
-            res.end("unauthorized user")
-        }
-    }
-}
+    };
+};

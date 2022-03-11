@@ -20,3 +20,9 @@ module.exports.done=async(req,res)=>{
 
     // process.kill(process.pid, 'SIGINT')
 }
+
+
+module.exports.formdata=(req,res)=>{
+    console.log("called")
+    console.log(req.file)
+}
