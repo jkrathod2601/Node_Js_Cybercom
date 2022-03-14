@@ -18,7 +18,9 @@ module.exports = (sequelize, DataTypes) => {
     password: DataTypes.STRING,
     role: DataTypes.STRING,
     token: DataTypes.STRING,
-    refreshtoken:DataTypes.STRING
+    refreshtoken:DataTypes.STRING,
+    key:DataTypes.STRING,
+    veryfication_token: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'user',

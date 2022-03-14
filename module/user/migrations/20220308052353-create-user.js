@@ -23,6 +23,10 @@ module.exports = {
       refreshtoken:{
         type: Sequelize.STRING
       },
+      veryfication_token:{type: Sequelize.STRING},
+      key:{
+        type: Sequelize.STRING
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

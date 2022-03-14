@@ -1,4 +1,6 @@
 const jwt = require("jsonwebtoken");
+
+
 exports.validate = function (access_array) {
     return async (req, res, next) => {
         try {
@@ -29,7 +31,7 @@ exports.validate = function (access_array) {
                                 role: access_user.role,
                             },
                             framework.jwtkey, {
-                                expiresIn: "2H",
+                                expiresIn: "2h",
                             }
                         );
                         await db.user
@@ -56,51 +58,67 @@ exports.validate = function (access_array) {
                 next();
             }
         } catch (error) {
-            const refreshtoken_veryfine = jwt.verify(
-                req.headers.refreshtoken,
-                framework.jwtkey
-            );
-            if (
-                error.message == "jwt expired" &&
-                access_array.includes(refreshtoken_veryfine.role)
-            ) {
-                let jwt_token = jwt.sign({
-                        name: refreshtoken_veryfine.name,
-                        role: refreshtoken_veryfine.role,
-                    },
-                    framework.jwtkey, {
-                        expiresIn: "1h",
-                    }
+            try {
+                const refreshtoken_veryfine = jwt.verify(
+                    req.headers.refreshtoken,
+                    framework.jwtkey
                 );
-                let refreshtoken = jwt.sign({
-                        name: refreshtoken_veryfine.name,
-                        role: refreshtoken_veryfine.role,
-                    },
-                    framework.jwtkey, {
-                        expiresIn: "2H",
-                    }
-                );
-                await db.user
-                    .update({
-                        token: jwt_token,
-                        refreshtoken: refreshtoken,
-                    }, {
-                        where: {
+                if (
+                    error.message == "jwt expired" &&
+                    access_array.includes(refreshtoken_veryfine.role)
+                ) {
+                    let jwt_token = jwt.sign({
                             name: refreshtoken_veryfine.name,
                             role: refreshtoken_veryfine.role,
                         },
-                    })
-                    .then((data) => {
-                        console.log(data);
-                    });
-                console.log(framework.chalk.green("------------------------"));
-                console.log(
-                    framework.chalk.green("changed the token and refresh token")
-                );
-                res.end("token has been changed");
-            } else {
-                res.send(message.error);
+                        framework.jwtkey, {
+                            expiresIn: "1h",
+                        }
+                    );
+                    let refreshtoken = jwt.sign({
+                            name: refreshtoken_veryfine.name,
+                            role: refreshtoken_veryfine.role,
+                        },
+                        framework.jwtkey, {
+                            expiresIn: "2h",
+                        }
+                    );
+                    await db.user
+                        .update({
+                            token: jwt_token,
+                            refreshtoken: refreshtoken,
+                        }, {
+                            where: {
+                                name: refreshtoken_veryfine.name,
+                                role: refreshtoken_veryfine.role,
+                            },
+                        })
+                        .then((data) => {
+                            console.log(data);
+                        });
+                    console.log(framework.chalk.green("------------------------"));
+                    console.log(
+                        framework.chalk.green("changed the token and refresh token")
+                    );
+                    res.end("token has been changed");
+                } else {
+                    res.send(message.error);
+                }
+            } catch (error) {
+                console.error("$%%%$%E%%^%^%^%^%^%^%^%^%^%^%^%^%^%^")
+                console.log(framework.chalk.red(error.message));
+                res.send("login again")
             }
+            
         }
     };
 };
+
+
+
+
+
+
+
+
+

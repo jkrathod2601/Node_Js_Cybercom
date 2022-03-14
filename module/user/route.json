@@ -44,6 +44,29 @@
             "auth.validate"
         ],
         "access":[
+            "admin",
+            "teacher",
+            "student"
+        ]
+    },
+    {
+        "method": "get",
+        "path": "/refresh",
+        "controller": "userc.refreshtoken",
+        "middlewares": [
+            "auth.validate"
+        ],
+        "access":[
+            
+        ]
+    },{
+        "method": "get",
+        "path": "/ip",
+        "controller": "userc.getip",
+        "middlewares": [
+            "auth.validate"
+        ],
+        "access":[
             
         ]
     }

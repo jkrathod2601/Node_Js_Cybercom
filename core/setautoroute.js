@@ -3,7 +3,7 @@ const fs=require('fs')
 const express = require("express");
 const router = new express.Router();
 const validateerror=require('./validerror')
-const auth_midlle=require('./middleware/auth_midlle');
+const auth_midlle=require('./middleware/check_role');
 // const { validate } = require('../module/user/middleware/auth');
 
 let module_path=path.join(__dirname,"../module")
@@ -29,7 +29,6 @@ module_array.forEach((dirname)=>{
         let [controller_filname, controller_functionname] =ele.controller.split(".");
         const controller_calling = require(`${module_path}/${dirname}/controller/${controller_filname}`);
         const controller = controller_calling[controller_functionname];
-    
         router[ele.method](ele.path,[auth_midlle.validate(ele.access),...middlewares], controller);
       } catch (error) {
         // validateerror(ele,index)
