@@ -9,7 +9,8 @@
         ],
         "access":[
             "admin"
-        ]
+        ],
+        "isgloblal":true
     },
     {
         "method": "post",
@@ -21,7 +22,8 @@
         ],
         "access":[
             
-        ]
+        ],
+        "isgloblal":true
     },
     {
         "method": "post",
@@ -34,7 +36,8 @@
         "access":[
             "student",
             "teacher"
-        ]
+        ],
+        "isgloblal":true
     },
     {
         "method": "post",
@@ -47,7 +50,8 @@
             "admin",
             "teacher",
             "student"
-        ]
+        ],
+        "isgloblal":true
     },
     {
         "method": "get",
@@ -58,7 +62,8 @@
         ],
         "access":[
             
-        ]
+        ],
+        "isgloblal":true
     },{
         "method": "get",
         "path": "/ip",
@@ -68,6 +73,33 @@
         ],
         "access":[
             
-        ]
+        ],
+        "isgloblal":true
+    },
+    {
+        "method": "post",
+        "path": "/loginuserdata",
+        "controller": "userc.login",
+        "middlewares": [
+            "auth.validate"
+        ],
+        "access":[
+            
+        ],
+        "isgloblal":true
+    },
+    {
+        "method": "get",
+        "path": "/giveloginpage",
+        "controller": "userc.giveloginpage",
+        "middlewares": [
+            "auth.validate"
+        ],
+        "access":[
+            
+        ],
+        "isgloblal":false
     }
 ]
+
+

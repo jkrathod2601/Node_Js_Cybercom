@@ -9,7 +9,8 @@
         ],
         "access":[
            "admin"
-        ]
+        ],
+        "isgloblal":true
     },
     {
         "method": "post",
@@ -21,7 +22,8 @@
         ],
         "access":[
             "admin"
-        ]
+        ],
+        "isgloblal":true
     },
     {
         "method": "delete",
@@ -32,7 +34,8 @@
         ],
         "access":[
             "admin"
-        ]
+        ],
+        "isgloblal":true
     },
     {
         "method": "put",
@@ -43,7 +46,8 @@
         ],
         "access":[
             "admin"
-        ]
+        ],
+        "isgloblal":true
     },
     {
         "method": "get",
@@ -54,6 +58,7 @@
         ],
         "access":[
             "admin"
-        ]
+        ],
+        "isgloblal":true
     }
 ]

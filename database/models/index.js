@@ -31,11 +31,11 @@ Object.keys(db).forEach(modelName => {
   }
 });
 
-const module_array=fs.readdirSync(path.join(__dirname,"../../module"))
+const module_array=fs.readdirSync(path.join(__dirname,"../../api"))
 module_array.forEach((ele) => {
-  fs.readdirSync(path.join(__dirname,`../../module/${ele}/models`))
+  fs.readdirSync(path.join(__dirname,`../../api/${ele}/models`))
     .forEach((file) => {
-      const model = require(path.join(__dirname,`../../module/${ele}/models/${file}`))(
+      const model = require(path.join(__dirname,`../../api/${ele}/models/${file}`))(
         sequelize,
         Sequelize.DataTypes
       );

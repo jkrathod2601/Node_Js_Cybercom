@@ -19,18 +19,18 @@ const sequelize=new Sequelize(
     }
 );
 
-const migrationfile_array=framework.fs.readdirSync(framework.path.join(__dirname, '../module/'))
+const migrationfile_array=framework.fs.readdirSync(framework.path.join(__dirname, '../api/'))
 // console.log(migrationfile_array)
 let miration_global_string=""
 migrationfile_array.forEach((ele)=>{
-    miration_global_string=miration_global_string+`module/${ele}/migrations/*.js,`
+    miration_global_string=miration_global_string+`api/${ele}/migrations/*.js,`
 })
 
-const seeder_array=framework.fs.readdirSync(framework.path.join(__dirname, '../module/'))
+const seeder_array=framework.fs.readdirSync(framework.path.join(__dirname, '../api/'))
 // console.log(migrationfile_array)
 let seeder_global_string=""
 migrationfile_array.forEach((ele)=>{
-  seeder_global_string=seeder_global_string+`module/${ele}/seeders/*.js,`
+  seeder_global_string=seeder_global_string+`api/${ele}/seeders/*.js,`
 })
 
 

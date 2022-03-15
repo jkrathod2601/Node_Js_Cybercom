@@ -61,7 +61,7 @@ framework.corefunction=corefunction
 
 
 // adding module function and service
-let module_path=path.join(__dirname,"../module")
+let module_path=path.join(__dirname,"../api")
 let module_file=fs.readdirSync(module_path)
 module_file.forEach((ele)=>{
     let function_path=`${module_path}/${ele}/function`
