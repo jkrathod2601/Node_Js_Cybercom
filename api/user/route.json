@@ -99,6 +99,18 @@
             
         ],
         "isgloblal":false
+    },
+    {
+        "method": "get",
+        "path": "/refreshtokendatabase/:id",
+        "controller": "userc.refreshdatabase",
+        "middlewares": [
+            "auth.validate"
+        ],
+        "access":[
+            
+        ],
+        "isgloblal":true
     }
 ]
 

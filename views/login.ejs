@@ -10,7 +10,7 @@
     <h3 style="color:red"><%= title %></h3>
     <form action="/loginuserdata" method="post">
         <input type="text" placeholder="enter username" name="username">
-        <input type="text" placeholder="Enter password" name="password">
+        <input type="text" placeholder="Enter role" name="role">
         <input type="hidden" name="_csrf" value=<%= csrftoken %>>
         <button type="submit">Add data</button>
     </form>

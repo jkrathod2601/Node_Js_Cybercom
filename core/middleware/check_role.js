@@ -12,11 +12,11 @@ exports.validate = (access_array)=>{
         // console.log(req.headers)
         try {
             if(access_array.length>0){
-                const daat_veryfine = jwt.verify(req.headers.veryfication_token, framework.jwtkey)
-                let userid = daat_veryfine.user_id
-                const token_key=await db.user.findAll({raw:true},{where: {userid:userid}})
+                // const daat_veryfine = jwt.verify(req.headers.veryfication_token, framework.jwtkey)
+                // let userid = daat_veryfine.user_id
+                // const token_key=await db.user.findAll({raw:true},{where: {userid:userid}})
                 try {
-                    const tokne_data=jwt.verify(req.headers.jwttoken,token_key[0].key)
+                    const tokne_data=jwt.verify(req.signedCookies['access_token'],framework.jwtkey)
                     if(access_array.includes(tokne_data.role)){
                         console.log(framework.chalk.green('successfully loginf'))
                         next()
@@ -36,3 +36,5 @@ exports.validate = (access_array)=>{
         }
     }
 }
+
+
