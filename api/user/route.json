@@ -52,34 +52,11 @@
             "student"
         ],
         "isgloblal":true
-    },
-    {
-        "method": "get",
-        "path": "/refresh",
-        "controller": "userc.refreshtoken",
-        "middlewares": [
-            "auth.validate"
-        ],
-        "access":[
-            
-        ],
-        "isgloblal":true
-    },{
+    }
+    ,{
         "method": "get",
         "path": "/ip",
         "controller": "userc.getip",
-        "middlewares": [
-            "auth.validate"
-        ],
-        "access":[
-            
-        ],
-        "isgloblal":true
-    },
-    {
-        "method": "post",
-        "path": "/loginuserdata",
-        "controller": "userc.login",
         "middlewares": [
             "auth.validate"
         ],
@@ -99,18 +76,6 @@
             
         ],
         "isgloblal":false
-    },
-    {
-        "method": "get",
-        "path": "/refreshtokendatabase/:id",
-        "controller": "userc.refreshdatabase",
-        "middlewares": [
-            "auth.validate"
-        ],
-        "access":[
-            
-        ],
-        "isgloblal":true
     }
 ]
 

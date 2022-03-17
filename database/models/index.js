@@ -7,6 +7,8 @@ const basename = path.basename(__filename);
 const env = process.env.NODE_ENV || 'development';
 const config = require('../../config/config.json')[env];
 const db = {};
+const dynamic_db_obj={}
+let i=1
 
 let sequelize;
 if (config.use_env_variable) {
@@ -23,6 +25,8 @@ fs
   .forEach(file => {
     const model = require(path.join(__dirname, file))(sequelize, Sequelize.DataTypes);
     db[model.name] = model;
+    dynamic_db_obj[i]=model.name
+    i=i+1
   });
 
 Object.keys(db).forEach(modelName => {
@@ -40,6 +44,8 @@ module_array.forEach((ele) => {
         Sequelize.DataTypes
       );
       db[model.name] = model;
+      dynamic_db_obj[i]=model.name
+      i=i+1
     });
 
   Object.keys(db).forEach((modelName) => {
@@ -55,4 +61,5 @@ db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
 global.db=db
+global.dynamic_db_obj=dynamic_db_obj
 module.exports = db;

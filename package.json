@@ -3,7 +3,10 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "nodemon ./bin/www"
+    "start": "nodemon ./bin/www",
+    "add_module":"node ./bin/command/add_module.js",
+    "list_cmd":"node ./bin/command/list_command.js",
+    "add_auth":"node ./bin/command/add_auth.js"
   },
   "dependencies": {
     "@supercharge/request-ip": "^1.2.0",
@@ -29,5 +32,8 @@
   },
   "devDependencies": {
     "sequelize-cli": "^6.4.1"
+  },
+  "bin": {
+    "add-module": "./bin/cli.js"
   }
 }

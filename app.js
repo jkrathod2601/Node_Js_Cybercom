@@ -15,6 +15,7 @@ var cors = require('cors')
 
 var app = express();
 let routeset=require('./core/setautoroute');
+const core_route=require('./core/core_controller')
 
 const filestorage=multer.diskStorage({
   destination:(req,file,cb)=>{
@@ -40,6 +41,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(csrf({cookie:true}));
 
 
+app.use(core_route)
 app.use(routeset)
 require('./database/models/index')
 
