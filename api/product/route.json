@@ -60,5 +60,18 @@
             "admin"
         ],
         "isgloblal":true
+    },
+    {
+        "method": "get",
+        "path": "/authgoogle",
+        "controller": "passport.authwithgoogle",
+        "middlewares": [
+            "auth.validate",
+            "auth.check"
+        ],
+        "access":[
+            
+        ],
+        "isgloblal":true
     }
 ]

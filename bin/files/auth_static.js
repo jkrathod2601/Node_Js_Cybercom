@@ -10,8 +10,8 @@ const refreshtoken=async(req,res)=>{
         const data_token=await jwt.verify(req.signedCookies["refresh_token"],req.cookies["_csrf"])
         let refreshtoken=jwt.sign({username:data_token.username,age:"26"},req.cookies["_csrf"],{expiresIn:"1h"})
         let accesstoken=jwt.sign({username:data_token.username,role:"admin"},framework.jwtkey,{expiresIn: "1h"})
-        res.cookie("refresh_token",refreshtoken,{ maxAge: 900000, httpOnly: true,signed: true})
-        res.cookie('access_token',accesstoken,{ maxAge: 900000, httpOnly: true,signed: true})
+        res.cookie("refresh_token",refreshtoken,{ maxAge: 3650*24*60*60, httpOnly: true,signed: true})
+        res.cookie('access_token',accesstoken,{ maxAge: 3650*24*60*60, httpOnly: true,signed: true})
         console.log(framework.chalk.green("successfully generated new refresh token"))
         res.send(accesstoken)
     }catch(err){
@@ -24,7 +24,9 @@ const login = (req,res)=>{
     if(req.body.username=="jay" && req.body.role=="2601"){
         // console.log(req.cookies["_csrf"])
         let refreshtoken=jwt.sign({username:req.body.username},req.cookies["_csrf"],{expiresIn: "1h"})
-        res.cookie("refresh_token",refreshtoken,{ maxAge: 900000, httpOnly: true ,signed: true})
+        let accesstoken=jwt.sign({username:req.body.username,role:"admin"},framework.jwtkey,{expiresIn: "1h"})
+        res.cookie("refresh_token",refreshtoken,{ maxAge: 3650*24*60*60, httpOnly: true ,signed: true})
+        res.cookie('access_token',accesstoken,{ maxAge: 3650*24*60*60, httpOnly: true,signed: true})
         res.render('index',{
             title: 'jay'
         })

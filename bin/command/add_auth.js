@@ -3,7 +3,6 @@ const reader = require("readline-sync");
 require("dotenv").config();
 const fs=require("fs");
 const path=require("path");
-const db = require('../../database/models/index');
 const {Sequelize, DataTypes} = require('sequelize');
 
 const sequelize=new Sequelize(
@@ -18,11 +17,10 @@ const sequelize=new Sequelize(
 
 const queryInterface = sequelize.getQueryInterface();
 
-const exec= require('child_process').exec
-
 require('../../database/models/index')
 
-console.log(chalk.blue("with use of database"),"====>",chalk.yellow("1"))
+try {
+    console.log(chalk.blue("with use of database"),"====>",chalk.yellow("1"))
 console.log(chalk.blue("with use of static"),"====>",chalk.yellow("2"))
 const answer=reader.question(chalk.green("which method use for authentication?"))
 
@@ -48,15 +46,27 @@ if(answer==1){
             console.log(chalk.blue(dynamic_db_obj[i]),"====>",chalk.yellow(i))
         }
         const answer=reader.question(chalk.green("select one model number for use our authentication"))
-        queryInterface.addColumn(dynamic_db_obj[answer], 'key', { type: DataTypes.STRING }).then((data)=>{
-            console.log("added key column to table")
+
+        queryInterface.describeTable(dynamic_db_obj[answer]).then((data)=>{
+            // console.log(Object.keys(data));
+            if(!Object.keys(data).includes("refreshtoken")){
+                queryInterface.addColumn(dynamic_db_obj[answer], 'refreshtoken', { type: DataTypes.STRING }).then((data)=>{
+                    console.log("added refreshtoken column to table")
+                })
+            }
+            if(!Object.keys(data).includes("key")){
+                queryInterface.addColumn(dynamic_db_obj[answer], 'key', { type: DataTypes.STRING }).then((data)=>{
+                    console.log("added key column to table")
+                })
+            }
+            const file_data=fs.readFileSync(path.join(__dirname,"../files/auth_database.js"),"utf-8")
+            fs.writeFileSync(path.join(__dirname,"../../core/core_controller.js"),file_data)
         })
-        queryInterface.addColumn(dynamic_db_obj[answer], 'refreshtoken', { type: DataTypes.STRING }).then((data)=>{
-            console.log("added refreshtoken column to table")
-        })
-        const file_data=fs.readFileSync(path.join(__dirname,"../files/auth_database.js"),"utf-8")
-        fs.writeFileSync(path.join(__dirname,"../../core/core_controller.js"),file_data)
+        
+        
     }
 }
-
+} catch (error) {
+    console.log(chalk.red(error))    
+}
 
