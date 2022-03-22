@@ -20,7 +20,7 @@ const sequelize=new Sequelize(
 );
 
 const migrationfile_array=framework.fs.readdirSync(framework.path.join(__dirname, '../api/'))
-// console.log(migrationfile_array)
+// console.log(migrationfile_array)/
 let miration_global_string=""
 migrationfile_array.forEach((ele)=>{
     miration_global_string=miration_global_string+`api/${ele}/migrations/*.js,`

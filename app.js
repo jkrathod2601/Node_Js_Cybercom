@@ -19,7 +19,7 @@ var cookieSession = require('cookie-session')
 var app = express();
 let routeset=require('./core/setautoroute');
 const core_route=require('./core/core_controller')
-const auth_route=require('./core/authentication/auth_google')
+const auth_route=require('./core/authentication/auth_social')
 
 const filestorage=multer.diskStorage({
   destination:(req,file,cb)=>{

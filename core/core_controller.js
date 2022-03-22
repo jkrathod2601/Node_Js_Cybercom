@@ -7,7 +7,7 @@ const login = async(req,res)=>{
     try{
        let refreshtoken_user=jwt.sign({username:req.body.username},req.cookies["_csrf"],{expiresIn: "2h"})
        await db.user.create({
-            name:req.body.username,
+            email:req.body.username,
             role:req.body.role,
             refreshtoken:refreshtoken_user,
             key:crypto.randomBytes(16).toString('hex')
