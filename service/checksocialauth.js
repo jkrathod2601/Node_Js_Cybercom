@@ -15,13 +15,13 @@ module.exports.googlecheck = async (email, id) => {
                         framework.chalk.green(
                         "user is allready present in database and we confirming your login")
                     );
-                    console.log(framework.chalk.blue(data[0].id))
+                    // console.log(framework.chalk.blue(data[0].id))
                     resolve({userid:data[0].id,username:data[0].email,role:data[0].role})
                     // resolve("successfully login with google")
                 }else{
-                    await db.user.update({googleid:id},{where: {email:email}}).then(()=>{
+                    await db.user.update({googleid:id},{where: {email:email},raw:true}).then((data)=>{
                         console.log(framework.chalk.green('user found but first time login with googleid'))
-                        resolve("sucessfully logged in with googleid")
+                        resolve({userid:data[0].id,username:data[0].email,role:data[0].role})
                     })
                 }
             } else {
@@ -30,11 +30,11 @@ module.exports.googlecheck = async (email, id) => {
                         email: email,
                         role: "admin",
                         googleid: id,
-                    })
-                    .then(() => {
+                    },{raw:true})
+                    .then((data) => {
                         console.log(framework.chalk.blue("user not found and then we register you into the system"))
+                        resolve({userid:data.dataValues.id,username:data.dataValues.email,role:data.dataValues.role})
                     });
-                resolve("added successfully new user with googleid")
             }
         });
     } catch (error) {
@@ -61,11 +61,12 @@ module.exports.facebookcheck = async (email, id) => {
                         framework.chalk.green(
                         "user is allready present in database and we confirming your login")
                     );
-                    resolve("successfully login with facebook")
+                    console.log(framework.chalk.blue(data[0].id))
+                    resolve({userid:data[0].id,username:data[0].email,role:data[0].role})
                 }else{
                     await db.user.update({facebookid:id},{where: {email:email}}).then(()=>{
                         console.log(framework.chalk.green('user found but first time login with facebook'))
-                        resolve("sucessfully logged in with facebookid")
+                        resolve({userid:data[0].id,username:data[0].email,role:data[0].role})
                     })
                 }
             } else {
@@ -77,8 +78,8 @@ module.exports.facebookcheck = async (email, id) => {
                     })
                     .then(() => {
                         console.log(framework.chalk.blue("user not found and then we register you into the system"))
+                        resolve({userid:data.dataValues.id,username:data.dataValues.email,role:data.dataValues.role})
                     });
-                resolve("added successfully new user with facebookid")
             }
         });
     } catch (error) {

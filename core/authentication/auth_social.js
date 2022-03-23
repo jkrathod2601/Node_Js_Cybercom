@@ -54,8 +54,18 @@ router.get('/auth/facebook/callback',
 passport.authenticate('facebook', { failureRedirect: '/login' }),
 async function(req, res) {
   // Successful authentication, redirect home.
-  const data=await framework.service.checksocialauth.facebookcheck(req.user.emails[0].value,req.user.id).then((data)=>{
-      res.send(data);
+  await framework.service.checksocialauth.facebookcheck(req.user.emails[0].value,req.user.id).then(async(data)=>{
+    let id_user=data.userid
+    let username=data.username
+    let role=data.role
+    let refreshtoken_user=jwt.sign({username:username},req.cookies["_csrf"],{expiresIn: "2h"})
+    let accesstoken_user=jwt.sign({username:username,role:role,uid:id_user},framework.jwtkey,{expiresIn: "1h"})
+    await db.user.update({refreshtoken:refreshtoken_user,key:crypto.randomBytes(16).toString('hex')},{where:{id:id_user}}).then((data)=>{
+      console.log(framework.chalk.green("facebook set refresf and access token"))
+      res.cookie("refresh_token",refreshtoken_user,{ maxAge:3650*24*60*60, httpOnly: true ,signed: true})
+      res.cookie("access_token",accesstoken_user,{ maxAge: 3650*24*60*60, httpOnly: true ,signed: true})
+      res.render('index',{title:username})
+    })
   })
 });
 
