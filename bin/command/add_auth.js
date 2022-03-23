@@ -1,3 +1,8 @@
+#!/usr/bin/env node
+/*
+    this file is made for authorization techniques and user can select one tech. for suitable for project
+*/
+
 const chalk=require('chalk')
 const reader = require("readline-sync");
 require("dotenv").config();
@@ -39,7 +44,8 @@ if(answer==1){
        fs.writeFileSync(path.join(__dirname,"../../database/migrations/user_migration.js"),user_migration)
 
     const file_data=fs.readFileSync(path.join(__dirname,"../files/auth_database.js"),"utf-8")
-    fs.writeFileSync(path.join(__dirname,"../../core/core_controller.js"),file_data)
+    let model_string=`let modelname = "user";`+file_data
+    fs.writeFileSync(path.join(__dirname,"../../core/core_controller.js"),model_string)
     }
     if(answer=="no"){
         for(let i in dynamic_db_obj){
@@ -59,11 +65,31 @@ if(answer==1){
                     console.log("added key column to table")
                 })
             }
+            if(!Object.keys(data).includes("id")){
+                queryInterface.addColumn(dynamic_db_obj[answer], 'id', { type: DataTypes.STRING }).then((data)=>{
+                    console.log("added id column to table")
+                })
+            }
+            if(!Object.keys(data).includes("role")){
+                queryInterface.addColumn(dynamic_db_obj[answer], 'role', { type: DataTypes.STRING }).then((data)=>{
+                    console.log("added role column to table")
+                })
+            }
+            if(!Object.keys(data).includes("name")){
+                queryInterface.addColumn(dynamic_db_obj[answer], 'name', { type: DataTypes.STRING }).then((data)=>{
+                    console.log("added name column to table")
+                })
+            }
+            if(!Object.keys(data).includes("email")){
+                queryInterface.addColumn(dynamic_db_obj[answer], 'email', { type: DataTypes.STRING }).then((data)=>{
+                    console.log("added name column to table")
+                })
+            }
             const file_data=fs.readFileSync(path.join(__dirname,"../files/auth_database.js"),"utf-8")
-            fs.writeFileSync(path.join(__dirname,"../../core/core_controller.js"),file_data)
+            let model_string=`let modelname = "${dynamic_db_obj[answer]}";`+file_data
+           
+            fs.writeFileSync(path.join(__dirname,"../../core/core_controller.js"),model_string)
         })
-        
-        
     }
 }
 } catch (error) {

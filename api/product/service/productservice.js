@@ -1,4 +1,4 @@
-const Product=require("../../../model/productmodel")
+// const Product=require("../../../model/productmodel")
 
 module.exports.addproduct = (getproduct) => {
   console.log(framework.chalk.yellow("add product service is calling"));

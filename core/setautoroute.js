@@ -1,10 +1,14 @@
+// this file is set for set auto rouutes in projects
+
+
 const path=require('path')
 const fs=require('fs')
 const express = require("express");
 const router = new express.Router();
-const validateerror=require('./validerror')
 const auth_midlle=require('./middleware/check_role');
 // const { validate } = require('../module/user/middleware/auth');
+
+// checkin for method are same in other api
 let route_name_global={get:[],post:[],delete:[],put:[],patch:[]}
 let route_name_module={}
 
@@ -52,8 +56,8 @@ module_array.forEach((dirname)=>{
           router[ele.method](`/${dirname}${ele.path}`,[auth_midlle.validate(ele.access),...middlewares], controller);
         }
       } catch (error) {
-        // validateerror(ele,index)
-        console.log(error);
+        framework.corefunction.validerror(ele,index)
+        // console.log(error);
       }
     });
   }else{

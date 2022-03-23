@@ -1,8 +1,11 @@
+#!/usr/bin/env node
+
 const chalk=require('chalk')
 
 let list_obj={}
 
-list_obj["for adding a module structure in API folder"]="npm run add_module"
+list_obj["for adding a module structure in API folder"]="command-addmodule"
+list_obj["for adding a authentication in your project"]="command-addauth"
 
 
 

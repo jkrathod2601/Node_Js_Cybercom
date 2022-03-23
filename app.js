@@ -19,7 +19,7 @@ var cookieSession = require('cookie-session')
 var app = express();
 let routeset=require('./core/setautoroute');
 const core_route=require('./core/core_controller')
-const auth_route=require('./core/authentication/auth_social')
+const auth_route=require('./core/3rd_authentication/auth_social')
 
 const filestorage=multer.diskStorage({
   destination:(req,file,cb)=>{
@@ -49,14 +49,7 @@ app.use(cookieSession({
   keys: ['key1', 'key2']
 }))
 
-// Auth middleware that checks if the user is logged in
-const isLoggedIn = (req, res, next) => {
-  if (req.user) {
-      next();
-  } else {
-      res.sendStatus(401);
-  }
-}
+
 
 app.use(passport.initialize());
 app.use(passport.session());

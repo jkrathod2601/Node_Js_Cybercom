@@ -55,6 +55,7 @@ module.exports.facebookcheck = async (email, id) => {
                 },
                 raw: true,
             });
+            console.log(data);
             if (data.length > 0) {
                 if(data[0].facebookid==id){
                     console.log(

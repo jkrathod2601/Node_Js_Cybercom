@@ -14,6 +14,9 @@ module.exports = {
       password: {
         type: Sequelize.STRING
       },
+      email:{
+        type: Sequelize.STRING
+      },
       role: {
         type: Sequelize.STRING
       },
@@ -23,7 +26,15 @@ module.exports = {
       refreshtoken:{
         type: Sequelize.STRING
       },
-      veryfication_token:{type: Sequelize.STRING},
+      facebookid:{
+        type: Sequelize.STRING
+      },
+      githubid:{
+        type: Sequelize.STRING
+      },
+      googleid:{
+        type: Sequelize.STRING
+      },
       key:{
         type: Sequelize.STRING
       },

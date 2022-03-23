@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 const chalk=require('chalk')
 const reader = require("readline-sync");
 const fs=require("fs");
@@ -19,6 +20,7 @@ if(array_module.includes(answer)){
     fs.mkdirSync(`${path_module}/middleware`)
     fs.mkdirSync(`${path_module}/migrations`)
     fs.mkdirSync(`${path_module}/models`)
+    fs.mkdirSync(`${path_module}/seeders`)
     fs.mkdirSync(`${path_module}/service`)
     fs.writeFileSync(`${path_module}/route.json`,`[
         {

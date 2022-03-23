@@ -3,10 +3,11 @@ const router = new express.Router()
 const jwt=require('jsonwebtoken')
 const crypto= require("crypto")
 
+
 const login = async(req,res)=>{
     try{
        let refreshtoken_user=jwt.sign({username:req.body.username},req.cookies["_csrf"],{expiresIn: "2h"})
-       await db.user.create({
+       await db[modelname].create({
             name:req.body.username,
             role:req.body.role,
             refreshtoken:refreshtoken_user,
@@ -26,7 +27,7 @@ const login = async(req,res)=>{
 const refreshdatabase=async(req,res)=>{
     try{
         let key_id=req.params.id
-    await db.user.findAll({where:{key:key_id},raw:true}).then((data)=>{
+    await db[modelname].findAll({where:{key:key_id},raw:true}).then((data)=>{
         if(data.length==1){
             // console.log(data[0].refreshtoken)
             // console.log(req.signedCookies["refresh_token"])

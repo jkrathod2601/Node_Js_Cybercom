@@ -1,4 +1,5 @@
-// const { exec } = require('child_process');
+// for auto migrations
+
 const readline = require('readline').createInterface({
     input: process.stdin,
     output: process.stdout
@@ -78,7 +79,7 @@ const umzug = new Umzug({
   }
 
 const run = async () => {
-    //migrations   
+  //   //migrations   
   // await umzug.down({ to: 0 });
   const migrations = await umzug.pending();
   if (migrations.length > 0) {

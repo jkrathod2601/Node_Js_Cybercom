@@ -3,7 +3,8 @@ const router = new express.Router();
 const passport =require('passport');
 const jwt = require('jsonwebtoken');
 const crypto= require("crypto")
-require('../passport_setup.js')
+require('./passport_setup')
+
 
 router.get('/', (req, res) => res.send('Example Home page!'))
 router.get('/failed', (req, res) => res.send('You Failed to log in!'))
@@ -72,6 +73,9 @@ async function(req, res) {
 router.get('/logout', (req, res) => {
     req.session = null;
     req.logout();
+    // res.clearCookie()
+    res.clearCookie('access_token');
+    res.clearCookie('refresh_token')
     res.redirect('/');
 })
 
