@@ -15,7 +15,14 @@ module.exports = (sequelize, DataTypes) => {
   }
   car.init({
     name: DataTypes.STRING,
-    price: DataTypes.STRING
+    password: DataTypes.STRING,
+    email:DataTypes.STRING,
+    role: DataTypes.STRING,
+    refreshtoken:DataTypes.STRING,
+    key:DataTypes.STRING,
+    googleid:DataTypes.STRING,
+    facebookid:DataTypes.STRING,
+    githubid:DataTypes.STRING
   }, {
     sequelize,
     modelName: 'cars',

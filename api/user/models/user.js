@@ -26,7 +26,7 @@ module.exports = (sequelize, DataTypes) => {
     githubid:DataTypes.STRING
   }, {
     sequelize,
-    modelName: 'user',
+    modelName: 'users',
   });
   return user;
 };

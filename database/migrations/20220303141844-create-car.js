@@ -2,16 +2,7 @@
 module.exports = {
   async up({ context: queryInterface }) {
     await queryInterface.createTable('cars', {
-      id: {
-        allowNull: false,
-        autoIncrement: true,
-        primaryKey: true,
-        type: Sequelize.INTEGER
-      },
       name: {
-        type: Sequelize.STRING
-      },
-      price: {
         type: Sequelize.STRING
       },
       createdAt: {

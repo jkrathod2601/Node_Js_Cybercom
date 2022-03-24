@@ -61,5 +61,6 @@ db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
 global.db=db
+console.log(dynamic_db_obj)
 global.dynamic_db_obj=dynamic_db_obj
 module.exports = db;

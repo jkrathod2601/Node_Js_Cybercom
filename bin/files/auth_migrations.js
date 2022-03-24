@@ -1,7 +1,7 @@
 'use strict';
 module.exports = {
   async up({ context: queryInterface }) {
-    await queryInterface.createTable('users', {
+    await queryInterface.createTable('masterusers', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -49,6 +49,6 @@ module.exports = {
     });
   },
   async down({ context: queryInterface }) {
-    await queryInterface.dropTable('users');
+    await queryInterface.dropTable('masterusers');
   }
 };

@@ -38,7 +38,7 @@ const refreshdatabase=async(req,res)=>{
                 console.log(access_token)
                 let refresh_token=jwt.sign({uid:data[0].id},req.cookies["_csrf"],{expiresIn: "2h"})
                 console.log(refresh_token)
-                db.user.update({refreshtoken:refresh_token,key:crypto.randomBytes(16).toString('hex')},{where:{key:key_id}}).
+                db[modelname].update({refreshtoken:refresh_token,key:crypto.randomBytes(16).toString('hex')},{where:{key:key_id}}).
                 then((data)=>{
                     res.cookie("refresh_token",refresh_token,{ maxAge:3650*24*60*60, httpOnly: true ,signed: true})
                     res.cookie("access_token",access_token,{ maxAge: 3650*24*60*60, httpOnly: true ,signed: true})

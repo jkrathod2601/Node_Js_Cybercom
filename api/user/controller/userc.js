@@ -1,34 +1,35 @@
 // const Car=require('../../../models/car')
 
-const db = require("../../../database/models/index")
+const db = require("../../../database/models/index");
 const jwt = require("jsonwebtoken");
-const crypto = require('crypto');
+const crypto = require("crypto");
 
-module.exports.done=async(req,res)=>{
-    // Car.findAll({raw:true}).then((data)=>{
-    //     console.log(data)
-    // }).catch((err)=>{
-    //     console.log(err)
-    // })
-    // console.log(db)
-    await db.cars.create({
-        name:"jay",
-        price:"1.0.20.3"
-    }).then((data)=>{
-        console.log(data)
-    }).catch((err)=>{
-        console.log(err)
+module.exports.done = async (req, res) => {
+  // Car.findAll({raw:true}).then((data)=>{
+  //     console.log(data)
+  // }).catch((err)=>{
+  //     console.log(err)
+  // })
+  // console.log(db)
+  await db.cars
+    .create({
+      name: "jay",
+      price: "1.0.20.3",
     })
+    .then((data) => {
+      console.log(data);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 
-    // process.kill(process.pid, 'SIGINT')
-}
+  // process.kill(process.pid, 'SIGINT')
+};
 
-
-module.exports.formdata=(req,res)=>{
-    console.log("called")
-    console.log(req.file)
-}
-
+module.exports.formdata = (req, res) => {
+  console.log("called");
+  console.log(req.file);
+};
 
 // // without daatabase
 // module.exports.refreshtoken=async(req,res)=>{
@@ -80,7 +81,6 @@ module.exports.formdata=(req,res)=>{
 //     }
 // }
 
-
 // module.exports.refreshdatabase=async(req,res)=>{
 //     try{
 //         let key_id=req.params.id
@@ -112,18 +112,14 @@ module.exports.formdata=(req,res)=>{
 //     catch(err){
 //         console.log(framework.chalk.red(err))
 //     }
-    
+
 // }
 
+module.exports.getip = (req, res) => {
+  console.log(req.headers["x-forwarded-for"]);
+  res.send(req.headers["x-forwarded-for"]);
+};
 
-
-module.exports.getip=(req,res)=>{
-    console.log(req.headers["x-forwarded-for"])
-    res.send(req.headers["x-forwarded-for"])
-}
-
-
-module.exports.giveloginpage=(req,res)=>{
-    res.render('login',{title:"",csrftoken:req.csrfToken()})
-}
-
+module.exports.giveloginpage = (req, res) => {
+  res.render("login", { title: "", csrftoken: req.csrfToken() });
+};
