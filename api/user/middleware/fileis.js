@@ -1,4 +1,4 @@
-const express= require('express')
+const file_filter_object={"file":"[\"application/pdf\"]"};const arrayfileds=[{"name":"file","maxCount":"1"}];const express= require('express')
 const multer=require('multer')
 
 console.log("---------------------------------------")
