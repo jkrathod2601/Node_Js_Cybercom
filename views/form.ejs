@@ -7,10 +7,10 @@
     <title>Document</title>
 </head>
 <body>
-    <form action="http://localhost:3000/fileadd" method="post" enctype="multipart/form-data">
+    <form action="http://localhost:3000/fileadd/?_csrf=<%= csrftoken %>" method="post" enctype="multipart/form-data">
         <input type="text" placeholder="name" name="name" id="name">
         <input type="file" placeholder="add file here" name="file" id="file">
-        <input type="hidden" name="_csrf" value=<%= csrftoken %>>
+        <!-- <input type="hidden" name="_csrf" value=<%= csrftoken %>> -->
         <button type="submit">Submit data</button>
     </form>
 </body>

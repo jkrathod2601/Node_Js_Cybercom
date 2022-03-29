@@ -49,7 +49,6 @@ app.use(cookieSession({
 app.use(passport.initialize());
 app.use(passport.session());
 
-
 app.use(core_route)
 app.use(routeset)
 app.use(auth_route)

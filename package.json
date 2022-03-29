@@ -42,6 +42,7 @@
     "command": "./bin/command/list_command.js",
     "command-addmodule": "./bin/command/add_module.js",
     "command-addauth": "./bin/command/add_auth.js",
-    "command-addfile": "./bin/command/add_fileuplod.js"
+    "command-addfile": "./bin/command/add_fileuplod.js",
+    "command-addfilemodule": "./bin/command/add_middle_fileupload.js"
   }
 }

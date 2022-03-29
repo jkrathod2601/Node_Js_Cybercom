@@ -27,9 +27,7 @@ module.exports.done = async (req, res) => {
 };
 
 module.exports.formdata = (req, res) => {
-  console.log("called");
-  console.log(req.file);
-  if(req.file==undefined){
+  if(req.filesubmission==undefined){
     res.send("check your file extension")
   }else{
     res.send("sucessfully added to database")

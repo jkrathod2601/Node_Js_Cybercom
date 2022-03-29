@@ -15,7 +15,7 @@ const checkfileapply = async () => {
       type: "checkbox",
       name: "array_file_allow",
       message: "select a file you can allow in your system?",
-      choices: ["jpg", "jpeg", "png", "mp4", "mp3", "pdf", "doc"],
+      choices: ["image/jpg", "image/jpeg", "image/png", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "application/octet-stream", "application/pdf", "application/x-zip-compressed",'application/octet-stream'],
     },
   ]);
   return JSON.stringify(datais.array_file_allow);
