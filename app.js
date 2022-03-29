@@ -16,19 +16,14 @@ const axios=require('axios')
 const passport=require('passport')
 var cookieSession = require('cookie-session')
 
+
 var app = express();
 let routeset=require('./core/setautoroute');
 const core_route=require('./core/core_controller')
 const auth_route=require('./core/3rd_authentication/auth_social')
+const file_route=require('./core/corefileupload')
 
-const filestorage=multer.diskStorage({
-  destination:(req,file,cb)=>{
-    cb(null,'savefile')
-  },
-  filename:(req,file,cb)=>{
-    cb(null,file.fieldname+'-'+file.originalname)
-  }
-})
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -40,7 +35,7 @@ app.set('view engine', 'ejs');
 app.use(express.json());
 app.use(cors())
 app.use(express.urlencoded({ extended: false }));
-app.use(multer({storage:filestorage}).single('file'))
+app.use(file_route)
 app.use(cookieParser('abcdefghijk'));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(csrf({cookie:true}));
