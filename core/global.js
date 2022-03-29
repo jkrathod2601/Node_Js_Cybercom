@@ -22,8 +22,13 @@ framework.jwtkey='xabdshasidbajdsiuadbanbccjatfdbasjdvyuasdbkjasbdkjhayds'
 let files = fs.readdirSync(path.join(__dirname, '../service'));
 let service={}
 files.forEach( fileName => {
-    let [file_a_name]=fileName.split('.')
-    service[file_a_name]=require(`../service/${fileName}`);
+    let [file_a_name,ext]=fileName.split('.')
+    if(ext=="js"){
+        service[file_a_name]=require(`../service/${fileName}`);
+    }
+    else{
+        console.log(chalk.yellow("check your file"),chalk.red(fileName),chalk.yellow("in service root folder"))
+    }
 });
 framework.service=service
 
@@ -35,8 +40,13 @@ const definefunction=(objecttostore,path)=>{
     let all_file_folder=fs.readdirSync(path)
     all_file_folder.forEach((f_name)=>{
         if(fs.statSync(path+'/'+f_name).isFile()){
-            let [file_name]=f_name.split(".")
-            objecttostore[file_name]=require(path+'/'+f_name)
+            let [file_name,exe]=f_name.split(".")
+            if(exe=="js"){
+                objecttostore[file_name]=require(path+'/'+f_name)
+            }
+            else{
+                console.log(chalk.yellow("check your file"),chalk.red(f_name),chalk.yellow("in function root folder"),chalk.yellow(path))
+            }
         }else{
             objecttostore[f_name]={}
             definefunction(objecttostore[f_name],path+"/"+f_name)
@@ -52,8 +62,13 @@ corefunction={}
 const core_function_path=path.join(__dirname,"../core/function")
 let all_core_function=fs.readdirSync(core_function_path)
 all_core_function.forEach((f_name)=>{
-    let [file_name]=f_name.split(".")
-    corefunction[file_name]=require(core_function_path+"/"+f_name)
+    let [file_name,exe]=f_name.split(".")
+    if(exe=="js"){
+        corefunction[file_name]=require(core_function_path+"/"+f_name)
+    }else{
+        console.log(chalk.yellow("check your file"),chalk.red(f_name),chalk.yellow("in core function folder"),chalk.yellow(core_function_path))
+    }
+    
 })
 framework.corefunction=corefunction
 
@@ -72,8 +87,13 @@ module_file.forEach((ele)=>{
         let all_file_folder=fs.readdirSync(path)
         all_file_folder.forEach((f_name)=>{
             if(fs.statSync(path+'/'+f_name).isFile()){
-                let [file_name]=f_name.split(".")
-                objecttostore[file_name]=require(path+'/'+f_name)
+                let [file_name,exe]=f_name.split(".")
+                if(exe=="js"){
+                    objecttostore[file_name]=require(path+'/'+f_name)
+                }else{
+                    console.log(chalk.yellow("check your file"),chalk.red(f_name),chalk.yellow("in api folder"),chalk.yellow(path))
+                }
+                
             }else{
                 objecttostore[f_name]={}
                 definefunction(objecttostore[f_name],path+"/"+f_name)

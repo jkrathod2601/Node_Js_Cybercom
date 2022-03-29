@@ -9,6 +9,7 @@ require("dotenv").config();
 const fs = require("fs");
 const path = require("path");
 const { Sequelize, DataTypes } = require("sequelize");
+const add_column=[]
 
 const sequelize = new Sequelize(
   process.env.mysql_databse_name, //database name
@@ -126,6 +127,10 @@ try {
                 type: DataTypes.STRING,
               })
               .then((data) => {
+                add_column.push({
+                  columname: "refreshtoken",
+                  type:"DataTypes.STRING"
+                })
                 console.log(chalk.blue("added refreshtoken column to table"));
               });
           }
@@ -135,6 +140,10 @@ try {
                 type: DataTypes.STRING,
               })
               .then((data) => {
+                add_column.push({
+                  columname: "key",
+                  type:"DataTypes.STRING"
+                })
                 console.log(chalk.blue("added key column to table"));
               });
           }
@@ -147,6 +156,13 @@ try {
                 primaryKey: true,
               })
               .then((data) => {
+                add_column.push({
+                  columname: "id",
+                  type:"DataTypes.STRING",
+                  allowNull: "false",
+                  autoIncrement: "true",
+                  primaryKey: "true",
+                })
                 console.log(chalk.blue("added id column to table"));
               })
               .catch((err) => {
@@ -159,6 +175,10 @@ try {
                 type: DataTypes.STRING,
               })
               .then((data) => {
+                add_column.push({
+                  columname: "password",
+                  type:"DataTypes.STRING"
+                })
                 console.log(chalk.blue("added id column to table"));
               });
           }
@@ -168,6 +188,10 @@ try {
                 type: DataTypes.STRING,
               })
               .then((data) => {
+                add_column.push({
+                  columname: "role",
+                  type:"DataTypes.STRING"
+                })
                 console.log(chalk.blue("added role column to table"));
               });
           }
@@ -177,6 +201,10 @@ try {
                 type: DataTypes.STRING,
               })
               .then((data) => {
+                add_column.push({
+                  columname: "name",
+                  type:"DataTypes.STRING"
+                })
                 console.log(chalk.blue("added name column to table"));
               });
           }
@@ -186,6 +214,10 @@ try {
                 type: DataTypes.STRING,
               })
               .then((data) => {
+                add_column.push({
+                  columname: "email",
+                  type:"DataTypes.STRING"
+                })
                 console.log(chalk.blue("added name column to table"));
               });
           }
@@ -227,6 +259,10 @@ try {
                       type: DataTypes.STRING,
                     })
                     .then((data) => {
+                      add_column.push({
+                        columname: "googleid",
+                        type:"DataTypes.STRING"
+                      })
                       console.log(chalk.blue("added googleid column to table"));
                     });
                 }
@@ -236,6 +272,10 @@ try {
                       type: DataTypes.STRING,
                     })
                     .then((data) => {
+                      add_column.push({
+                        columname: "facebookid",
+                        type:"DataTypes.STRING"
+                      })
                       console.log(
                         chalk.blue("added facebookid column to table")
                       );
@@ -247,6 +287,10 @@ try {
                       type: DataTypes.STRING,
                     })
                     .then((data) => {
+                      add_column.push({
+                        columname: "githubid",
+                        type:"DataTypes.STRING"
+                      })
                       console.log(
                         chalk.blue("added facebookid column to table")
                       );
@@ -290,9 +334,13 @@ try {
                 console.log(
                   chalk.green("successfully added 3 rd party authentication")
                 );
+                console.log(chalk.blue("add this model property to your model file"),chalk.yellow(model_name))
+                console.log(add_column)
+              
               });
           }
         });
+        
     }
   }
 } catch (error) {

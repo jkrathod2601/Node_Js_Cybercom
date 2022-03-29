@@ -52,6 +52,18 @@
             "student"
         ],
         "isgloblal":true
+    },
+    {
+        "method": "get",
+        "path": "/fileadd",
+        "controller": "userc.givefrom",
+        "middlewares": [
+            "auth.validate"
+        ],
+        "access":[
+            "admin"
+        ],
+        "isgloblal":true
     }
     ,{
         "method": "get",

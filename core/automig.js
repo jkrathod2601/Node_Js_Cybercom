@@ -82,6 +82,7 @@ const run = async () => {
   // //   //migrations   
   // await umzug.down({ to: 0 });
 
+
   const migrations = await umzug.pending();
   if (migrations.length > 0) {
     console.log(framework.chalk.blue("this is your remaining migration"));

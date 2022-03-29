@@ -19,6 +19,7 @@
     "express": "~4.16.1",
     "express-session": "^1.17.2",
     "http-errors": "~1.6.3",
+    "inquirer": "^8.2.2",
     "jsonwebtoken": "^8.5.1",
     "morgan": "~1.9.1",
     "multer": "^1.4.4",
@@ -40,6 +41,7 @@
   "bin": {
     "command": "./bin/command/list_command.js",
     "command-addmodule": "./bin/command/add_module.js",
-    "command-addauth": "./bin/command/add_auth.js"
+    "command-addauth": "./bin/command/add_auth.js",
+    "command-addfile": "./bin/command/add_fileuplod.js"
   }
 }

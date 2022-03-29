@@ -29,7 +29,18 @@ module.exports.done = async (req, res) => {
 module.exports.formdata = (req, res) => {
   console.log("called");
   console.log(req.file);
+  if(req.file==undefined){
+    res.send("check your file extension")
+  }else{
+    res.send("sucessfully added to database")
+  }
+  
 };
+
+
+module.exports.givefrom=(req,res)=>{
+  res.render('form',{csrftoken: req.csrfToken()})
+}
 
 // // without daatabase
 // module.exports.refreshtoken=async(req,res)=>{

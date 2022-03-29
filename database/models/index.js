@@ -25,6 +25,7 @@ fs
   .forEach(file => {
     const model = require(path.join(__dirname, file))(sequelize, Sequelize.DataTypes);
     db[model.name] = model;
+    // console.log(db)
     dynamic_db_obj[i]=model.name
     i=i+1
   });
@@ -61,6 +62,6 @@ db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
 global.db=db
-console.log(dynamic_db_obj)
+// console.log(dynamic_db_obj)
 global.dynamic_db_obj=dynamic_db_obj
 module.exports = db;
