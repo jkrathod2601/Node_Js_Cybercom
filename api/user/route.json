@@ -44,8 +44,7 @@
         "path": "/fileadd",
         "controller": "userc.formdata",
         "middlewares": [
-            "auth.validate",
-            "fileis.fileuploadis"
+            "auth.validate"
         ],
         "access":[
             "admin",

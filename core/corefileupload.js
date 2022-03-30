@@ -1,11 +1,12 @@
-const allow_file_upload_array= ["application/pdf"];const filename="taqi_file_save";const express= require('express')
+const allow_file_upload_array= ["image/jpg","application/pdf"];const filename="jays";const express= require('express')
 const router = new express.Router()
 const multer=require('multer')
-
+const path=require('path')
 
 // const filestorage=multer.diskStorage({
 //     destination:(req,file,cb)=>{
-//       cb(null,filename)
+//       req.filesubmission=true
+//       cb(null,path.join(__dirname,`../public/${filename}`))
 //     },
 //     filename:(req,file,cb)=>{
 //       cb(null,file.fieldname+'-'+Date.now() + '-' + Math.round(Math.random() * 1E9)+file.originalname)
@@ -13,6 +14,7 @@ const multer=require('multer')
 // })
 
 // const filefilter=(req,file,cb)=>{
+//   req.filesubmission=true
 //   if(allow_file_upload_array.includes(file.mimetype)){
 //     cb(null,true)
 //   }else{
@@ -20,8 +22,8 @@ const multer=require('multer')
 //   }
 // }
 
-// let ip=multer({storage:filestorage}).single('file')
+// router.use(multer({storage:filestorage,fileFilter:filefilter}).single('file'))
 
-// router.use(ip)
+module.exports=router
 
 module.exports=router
