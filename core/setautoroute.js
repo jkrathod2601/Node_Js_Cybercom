@@ -13,7 +13,6 @@ let route_name_global={get:[],post:[],delete:[],put:[],patch:[]}
 let route_name_module={}
 
 
-
 let module_path=path.join(__dirname,"../api")
 let module_array=fs.readdirSync(module_path)
 
