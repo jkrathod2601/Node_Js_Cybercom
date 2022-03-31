@@ -27,10 +27,13 @@ try {
         jsonfileobjectdata["bin"]={...jsonfileobjectdata["bin"],...insertcommanddata}
         fs.writeFileSync(path.join(__dirname,"../package.json"),JSON.stringify(jsonfileobjectdata))
         cmd.runSync('npm link')
+        console.log(chalk.green("comman's addedd sucessfully"))
+        console.log(chalk.blue("command"),chalk.yellow(" write this commadn for show all command list"))
       })
       .catch(function (err) {
         throw err;
       });
+
   }else{
       console.log(chalk.red("command allready present in database"))
   }
