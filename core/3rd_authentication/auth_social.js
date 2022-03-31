@@ -1,4 +1,4 @@
-let modelname = "products";const express=require('express')
+let modelname = "cars";const express=require('express')
 const router = new express.Router();
 const passport =require('passport');
 const jwt = require('jsonwebtoken');

@@ -24,6 +24,7 @@
     "morgan": "~1.9.1",
     "multer": "^1.4.4",
     "mysql2": "^2.3.3",
+    "node-cmd": "^5.0.0",
     "nodegit": "^0.27.0",
     "nodemon": "^2.0.15",
     "passport": "^0.5.2",
@@ -40,6 +41,7 @@
     "sequelize-cli": "^6.4.1"
   },
   "bin": {
+    "importcommand": "./bin/importcommand.js",
     "command": "./bin/git_command/command/list_command.js",
     "command-addmodule": "./bin/git_command/command/add_module.js",
     "command-addauth": "./bin/git_command/command/add_auth.js",

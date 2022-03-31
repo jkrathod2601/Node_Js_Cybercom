@@ -1,4 +1,4 @@
-let modelname = "products";module.exports.googlecheck = async (email, id) => {
+let modelname = "cars";module.exports.googlecheck = async (email, id) => {
     try {
         console.log(framework.chalk("google service is called"));
         return new Promise(async (resolve, reject) => {
