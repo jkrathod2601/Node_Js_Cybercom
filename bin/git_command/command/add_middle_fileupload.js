@@ -9,11 +9,6 @@ let module_file=fs.readdirSync(path.join(__dirname,"../../../api"))
 let array_fields=[]
 let filter_object={}
 
-
-
-
-
-
 const checkfileapply = async () => {
   const datais = await inquirer.prompt([
     {
