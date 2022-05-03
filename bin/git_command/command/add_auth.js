@@ -12,11 +12,11 @@ const { Sequelize, DataTypes } = require("sequelize");
 const add_column=[]
 
 const sequelize = new Sequelize(
-  process.env.mysql_databse_name, //database name
-  process.env.mysql_databse_username, //username
-  process.env.mysql_databse_password, //password
+  "demo", //database name
+  "root", //username
+  "root", //password
   {
-    dialect: process.env.databse_dialect, //type of database name
+    dialect: "mysql", //type of database name
     host: process.env.mysql_databse_host, //host url
   }
 );

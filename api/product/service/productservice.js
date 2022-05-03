@@ -22,7 +22,7 @@ module.exports.addproduct = (getproduct) => {
 module.exports.getproductdata = () => {
   console.log(framework.chalk.yellow("getproductdata service calling"));
   return new Promise(async(resolve,reject)=>{
-        db.cars.findAll({raw:true}).then((data)=>{
+        db.products.findAll({raw:true}).then((data)=>{
           resolve(data)
       }).catch((err)=>{
           reject(err)
